@@ -14,7 +14,7 @@ module.exports = [
       zIndex: 0
     },
     content: {
-      text: '',
+      text: '<h1>Hello</h1><p>I am the content</p>',
       textLink: '',
       image: '',
       imageCaption: '',

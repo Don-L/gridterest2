@@ -21,7 +21,6 @@ const Grid = React.createClass({
                    position={tile.position}
                    style={tile.style}
                    content={tile.content}
-                   contentStyle={tile.contentStyle}
               />;
           });
 

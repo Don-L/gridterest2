@@ -19769,8 +19769,7 @@
 	      return React.createElement(Tile, { key: tile.position,
 	        position: tile.position,
 	        style: tile.style,
-	        content: tile.content,
-	        contentStyle: tile.contentStyle
+	        content: tile.content
 	      });
 	    });
 	
@@ -19795,13 +19794,18 @@
 	var React = __webpack_require__(1);
 	var TileEditor = __webpack_require__(162);
 	var Gridfunc = __webpack_require__(163);
+	var TileContent = __webpack_require__(166);
 	
 	var Tile = React.createClass({
 	  displayName: 'Tile',
 	
 	
 	  render: function render() {
-	    return React.createElement('h1', { style: this.props.style });
+	    return React.createElement(
+	      'div',
+	      { style: this.props.style },
+	      React.createElement(TileContent, { content: this.props.content })
+	    );
 	  }
 	});
 	
@@ -19969,7 +19973,7 @@
 	    zIndex: 0
 	  },
 	  content: {
-	    text: '',
+	    text: '<h1>Hello</h1><p>I am the content</p>',
 	    textLink: '',
 	    image: '',
 	    imageCaption: '',
@@ -20436,6 +20440,31 @@
 	    }
 	  }
 	}];
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var TileContent = React.createClass({
+	  displayName: 'TileContent',
+	
+	
+	  render: function render() {
+	
+	    var markUp = function () {
+	      return { __html: this.props.content.text };
+	    }.bind(this);
+	
+	    return React.createElement('div', { style: this.props.content.style,
+	      dangerouslySetInnerHTML: markUp() });
+	  }
+	});
+	
+	module.exports = TileContent;
 
 /***/ }
 /******/ ]);
