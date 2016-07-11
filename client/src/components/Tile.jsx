@@ -41,8 +41,10 @@ const Tile = React.createClass({
     this.props.userRequestsEdit(this.props.position);
   },
 
-  onClick: function () {
-    this.props.tileSelected(this.props.position);
+  onClick: function (e) {
+    if (e.shiftKey === true) {
+      this.props.tileSelected(this.props.position);
+    }
   }
 
 });

@@ -56,15 +56,18 @@ const Gridterest = React.createClass({
       tile.style.outline = '';
       tiles.push(tile);
       this.setState({ tiles: tiles });
-      let amendedSelect = this.removeTileFromSelected(position);
-      this.setState({ selectedTiles: amendedSelect });
-    } else { let tile = this.getTileForEdit(position); //tile not selected
+      let newSelectedTiles = this.removeTileFromSelected(position);
+      newSelectedTiles = this.sortSelectedTiles(newSelectedTiles);
+      this.setState({ selectedTiles: newSelectedTiles });
+    } else {
+      let tile = this.getTileForEdit(position); //tile not selected
       let tiles = this.removeTileForEdit(position);
       tile.style.outline = 'black 1px solid';
       tiles.push(tile);
       this.setState({ tiles: tiles });
       let newSelectedTiles = this.state.selectedTiles;
       newSelectedTiles.push(position);
+      newSelectedTiles = this.sortSelectedTiles(newSelectedTiles);
       this.setState({ selectedTiles: newSelectedTiles });
     }
   },
@@ -72,8 +75,13 @@ const Gridterest = React.createClass({
   userRequestsEdit: function (position) {
     if (this.state.editing === position) {
       this.setAllEditingToNull();
-    } else this.setState({ editing: position,
-                           editingContentType: true });
+    } else if (this.state.selectedTiles.length === 0) {
+        this.setState({ editing: position,
+                             editingContentType: true });
+    } else if (this.state.selectedTiles[0] === position) {
+        this.setState({ editing: position,
+                             editingContentType: true });
+    }
   },
 
   userRequestsAddImage: function () {
@@ -161,6 +169,14 @@ const Gridterest = React.createClass({
       return number != position;
     });
     return tiles;
+  },
+
+  sortSelectedTiles: function (array) {
+    array.sort(function (a, b) {
+      return a - b;
+    }
+  );
+    return array;
   }
 
 });

@@ -19752,25 +19752,32 @@
 	      tile.style.outline = '';
 	      tiles.push(tile);
 	      this.setState({ tiles: tiles });
-	      var amendedSelect = this.removeTileFromSelected(position);
-	      this.setState({ selectedTiles: amendedSelect });
+	      var newSelectedTiles = this.removeTileFromSelected(position);
+	      newSelectedTiles = this.sortSelectedTiles(newSelectedTiles);
+	      this.setState({ selectedTiles: newSelectedTiles });
 	    } else {
 	      var _tile = this.getTileForEdit(position); //tile not selected
 	      var _tiles = this.removeTileForEdit(position);
 	      _tile.style.outline = 'black 1px solid';
 	      _tiles.push(_tile);
 	      this.setState({ tiles: _tiles });
-	      var newSelectedTiles = this.state.selectedTiles;
-	      newSelectedTiles.push(position);
-	      this.setState({ selectedTiles: newSelectedTiles });
+	      var _newSelectedTiles = this.state.selectedTiles;
+	      _newSelectedTiles.push(position);
+	      _newSelectedTiles = this.sortSelectedTiles(_newSelectedTiles);
+	      this.setState({ selectedTiles: _newSelectedTiles });
 	    }
 	  },
 	
 	  userRequestsEdit: function userRequestsEdit(position) {
 	    if (this.state.editing === position) {
 	      this.setAllEditingToNull();
-	    } else this.setState({ editing: position,
-	      editingContentType: true });
+	    } else if (this.state.selectedTiles.length === 0) {
+	      this.setState({ editing: position,
+	        editingContentType: true });
+	    } else if (this.state.selectedTiles[0] === position) {
+	      this.setState({ editing: position,
+	        editingContentType: true });
+	    }
 	  },
 	
 	  userRequestsAddImage: function userRequestsAddImage() {
@@ -19856,6 +19863,13 @@
 	      return number != position;
 	    });
 	    return tiles;
+	  },
+	
+	  sortSelectedTiles: function sortSelectedTiles(array) {
+	    array.sort(function (a, b) {
+	      return a - b;
+	    });
+	    return array;
 	  }
 	
 	});
@@ -19975,8 +19989,10 @@
 	    this.props.userRequestsEdit(this.props.position);
 	  },
 	
-	  onClick: function onClick() {
-	    this.props.tileSelected(this.props.position);
+	  onClick: function onClick(e) {
+	    if (e.shiftKey === true) {
+	      this.props.tileSelected(this.props.position);
+	    }
 	  }
 	
 	});
