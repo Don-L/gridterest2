@@ -39,6 +39,7 @@ const Gridterest = React.createClass({
               userRequestsEdit={this.userRequestsEdit}
               onTextSubmit={this.onTextSubmit}
               changeTileText={this.changeTileText}
+              userRequestsEditColour={this.userRequestsEditColour}
         />
       </div>
     );
@@ -78,6 +79,25 @@ const Gridterest = React.createClass({
 
   onTextSubmit: function (position) {
     this.setAllEditingToNull();
+  },
+
+  userRequestsEditColour: function (position) {
+    this.setState({ editingColour: true,
+                    editingContentType: null });
+  },
+
+  getTileForEdit: function (position) {
+    let tileForEdit = this.state.tiles.filter(function (tile) {
+      return tile.position === position;
+    });
+    return tileForEdit;
+  },
+
+  removeTileForEdit: function (position) {
+    let tilesMinusEditedTile = this.state.tiles.filter(function (tile) {
+      return tile.position != position;
+    });
+    return tilesMinusEditedTile;
   }
 
 });

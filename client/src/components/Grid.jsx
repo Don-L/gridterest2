@@ -30,6 +30,7 @@ const Grid = React.createClass({
                    userRequestsEdit={this.props.userRequestsEdit}
                    onTextSubmit={this.props.onTextSubmit}
                    changeTileText={this.props.changeTileText}
+                   userRequestsEditColour={this.props.userRequestsEditColour}
               />;
           }.bind(this));
 

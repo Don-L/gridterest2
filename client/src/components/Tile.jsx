@@ -21,7 +21,8 @@ const Tile = React.createClass({
                           position={this.props.position}
                           onTextSubmit={this.props.onTextSubmit}
                           content={this.props.content}
-                          changeTileText={this.props.changeTileText}/>
+                          changeTileText={this.props.changeTileText}
+                          userRequestsEditColour={this.props.userRequestsEditColour}/>
            </div>;
 
   },

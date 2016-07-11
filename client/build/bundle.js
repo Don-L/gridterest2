@@ -19734,7 +19734,8 @@
 	        editingImage: this.state.editingImage,
 	        userRequestsEdit: this.userRequestsEdit,
 	        onTextSubmit: this.onTextSubmit,
-	        changeTileText: this.changeTileText
+	        changeTileText: this.changeTileText,
+	        userRequestsEditColour: this.userRequestsEditColour
 	      })
 	    );
 	  },
@@ -19771,6 +19772,25 @@
 	
 	  onTextSubmit: function onTextSubmit(position) {
 	    this.setAllEditingToNull();
+	  },
+	
+	  userRequestsEditColour: function userRequestsEditColour(position) {
+	    this.setState({ editingColour: true,
+	      editingContentType: null });
+	  },
+	
+	  getTileForEdit: function getTileForEdit(position) {
+	    var tileForEdit = this.state.tiles.filter(function (tile) {
+	      return tile.position === position;
+	    });
+	    return tileForEdit;
+	  },
+	
+	  removeTileForEdit: function removeTileForEdit(position) {
+	    var tilesMinusEditedTile = this.state.tiles.filter(function (tile) {
+	      return tile.position != position;
+	    });
+	    return tilesMinusEditedTile;
 	  }
 	
 	});
@@ -19818,7 +19838,7 @@
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _React$createElement));
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -19869,7 +19889,8 @@
 	        position: this.props.position,
 	        onTextSubmit: this.props.onTextSubmit,
 	        content: this.props.content,
-	        changeTileText: this.props.changeTileText })
+	        changeTileText: this.props.changeTileText,
+	        userRequestsEditColour: this.props.userRequestsEditColour })
 	    );
 	  },
 	
@@ -19895,6 +19916,7 @@
 	
 	  render: function render() {
 	    if (this.props.editingContentType) {
+	      //initial select
 	      return React.createElement(
 	        'div',
 	        null,
@@ -19903,7 +19925,7 @@
 	          { onSubmit: this.onTextSubmit },
 	          React.createElement(
 	            'select',
-	            null,
+	            { onChange: this.onInitialSelect },
 	            React.createElement(
 	              'option',
 	              null,
@@ -19926,7 +19948,46 @@
 	          React.createElement('input', { type: 'Submit' })
 	        )
 	      );
+	    } else if (this.props.editingColour) {
+	      //colour edit
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'form',
+	          { onSubmit: this.onColourSubmit },
+	          React.createElement(
+	            'select',
+	            { onChange: this.onColourSelect },
+	            React.createElement(
+	              'option',
+	              null,
+	              'Yellow'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Red'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Green'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Purple'
+	            )
+	          )
+	        )
+	      );
 	    }
+	  },
+	
+	  changeTileText: function changeTileText(e) {
+	    e.preventDefault();
+	    this.props.changeTileText(this.props.position, e.target.value);
 	  },
 	
 	  onTextSubmit: function onTextSubmit(e) {
@@ -19934,9 +19995,10 @@
 	    this.props.onTextSubmit(this.props.position);
 	  },
 	
-	  changeTileText: function changeTileText(e) {
-	    e.preventDefault();
-	    this.props.changeTileText(this.props.position, e.target.value);
+	  onInitialSelect: function onInitialSelect(e) {
+	    if (e.target.value === 'Change tile colour') {
+	      this.props.userRequestsEditColour(this.props.position);
+	    }
 	  }
 	
 	});

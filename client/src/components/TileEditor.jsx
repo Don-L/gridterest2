@@ -3,10 +3,10 @@ const React = require('react');
 const TileEditor = React.createClass({
 
   render: function () {
-    if (this.props.editingContentType) {
+    if (this.props.editingContentType) { //initial select
       return <div>
                <form onSubmit={this.onTextSubmit}>
-                 <select>
+                 <select onChange={this.onInitialSelect}>
                    <option>Add/edit text</option>
                    <option>Change tile colour</option>
                    <option>Add image</option>
@@ -17,7 +17,23 @@ const TileEditor = React.createClass({
                  <input type='Submit'/>
                </form>
              </div>;
+    } else if (this.props.editingColour) { //colour edit
+      return <div>
+              <form onSubmit={this.onColourSubmit}>
+                <select onChange={this.onColourSelect}>
+                  <option>Yellow</option>
+                  <option>Red</option>
+                  <option>Green</option>
+                  <option>Purple</option>
+                </select>
+              </form>
+            </div>;
     }
+  },
+
+  changeTileText: function (e) {
+    e.preventDefault();
+    this.props.changeTileText(this.props.position, e.target.value);
   },
 
   onTextSubmit: function (e) {
@@ -25,9 +41,10 @@ const TileEditor = React.createClass({
     this.props.onTextSubmit(this.props.position);
   },
 
-  changeTileText: function (e) {
-    e.preventDefault();
-    this.props.changeTileText(this.props.position, e.target.value);
+  onInitialSelect: function (e) {
+    if (e.target.value === 'Change tile colour') {
+      this.props.userRequestsEditColour(this.props.position);
+    }
   }
 
 
