@@ -113,8 +113,31 @@ const Gridterest = React.createClass({
     this.setState({ tiles: amendedTiles });
   },
 
-  onTextSubmit: function () {
-    this.setAllEditingToNull();
+  onTextSubmit: function (position) {
+    //single tile selected for edit
+    if (this.state.selectedTiles.length === 0) {
+      this.setAllEditingToNull();
+      //first tile of selected group selected for edit
+    } else if (this.state.selectedTiles.length === 2) {
+      let tile = this.getTileForEdit(position);
+      let newTiles = this.removeTileForEdit(position);
+      tile.content.style.backgroundColor = 'yellow';
+      tile.content.style.width = 'calc((95vw / 2.5) + 0.76vw)';
+      tile.content.style.height = 'calc(1520vw / 50)';
+      tile.content.style.position = 'absolute';
+      tile.content.style.zIndex = 1;
+      tile.content.style.pointerEvents = 'none';
+      newTiles.push(tile);
+      this.setState({ tiles: newTiles });
+
+      this.setAllEditingToNull();
+      for (let entry of this.state.selectedTiles) {
+        this.tileSelected(entry);
+        console.log('look', this.state.selectedTiles)
+      }
+      this.setState({ selectedTiles: [] });
+    }
+
   },
 
   userRequestsEditColour: function (position) {

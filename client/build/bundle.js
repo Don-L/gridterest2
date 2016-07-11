@@ -19807,8 +19807,52 @@
 	    this.setState({ tiles: amendedTiles });
 	  },
 	
-	  onTextSubmit: function onTextSubmit() {
-	    this.setAllEditingToNull();
+	  onTextSubmit: function onTextSubmit(position) {
+	    //single tile selected for edit
+	    if (this.state.selectedTiles.length === 0) {
+	      this.setAllEditingToNull();
+	      //first tile of selected group selected for edit
+	    } else if (this.state.selectedTiles.length === 2) {
+	      var tile = this.getTileForEdit(position);
+	      var newTiles = this.removeTileForEdit(position);
+	      tile.content.style.backgroundColor = 'yellow';
+	      tile.content.style.width = 'calc((95vw / 2.5) + 0.76vw)';
+	      tile.content.style.height = 'calc(1520vw / 50)';
+	      tile.content.style.position = 'absolute';
+	      tile.content.style.zIndex = 1;
+	      tile.content.style.pointerEvents = 'none';
+	      newTiles.push(tile);
+	      this.setState({ tiles: newTiles });
+	
+	      this.setAllEditingToNull();
+	      var _iteratorNormalCompletion = true;
+	      var _didIteratorError = false;
+	      var _iteratorError = undefined;
+	
+	      try {
+	        for (var _iterator = this.state.selectedTiles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	          var entry = _step.value;
+	
+	          this.tileSelected(entry);
+	          console.log('look', this.state.selectedTiles);
+	        }
+	      } catch (err) {
+	        _didIteratorError = true;
+	        _iteratorError = err;
+	      } finally {
+	        try {
+	          if (!_iteratorNormalCompletion && _iterator.return) {
+	            _iterator.return();
+	          }
+	        } finally {
+	          if (_didIteratorError) {
+	            throw _iteratorError;
+	          }
+	        }
+	      }
+	
+	      this.setState({ selectedTiles: [] });
+	    }
 	  },
 	
 	  userRequestsEditColour: function userRequestsEditColour(position) {
