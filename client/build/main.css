@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  background-color: #8bbd78;
+}
+
+
+
+div.nav-div {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #47894b;
+  margin: 0.3vw;
+  border-radius: 5px;
+  z-index: 10000;
+}
+
+div.nav-div h3 {
+  color: #194747;
+  padding-left: 1vw;
+  padding-right: 0.6vw;
+}
+
+div.grid-div {
+  position: relative;
+  top: 5vw;
+  /*z-index: 0;*/
+}
