@@ -12,10 +12,10 @@ const Gridterest = React.createClass({
         tiles: [],
         selectedTiles: [],
         editing: null,
-        editingContentType: false,
-        editingColour: false,
-        editingText: false,
-        editingImage: false
+        editingContentType: null,
+        editingColour: null,
+        editingText: null,
+        editingImage: null
       }
     );
   },
@@ -41,6 +41,8 @@ const Gridterest = React.createClass({
               changeTileText={this.changeTileText}
               userRequestsEditColour={this.userRequestsEditColour}
               changeTileColour={this.changeTileColour}
+              userRequestsAddImage={this.userRequestsAddImage}
+              changeImageURL={this.changeImageURL}
         />
       </div>
     );
@@ -53,12 +55,16 @@ const Gridterest = React.createClass({
                            editingContentType: true });
   },
 
-  setAllEditingToNull: function () {
-    this.setState({ editing: null,
-                    editingContentType: null,
-                    editingColour: null,
-                    editingText: null,
-                    editingImage: null });
+  userRequestsAddImage: function () {
+    this.setState({ editingImage: true, editingContentType: null });
+  },
+
+  changeImageURL: function (position, urlText) {
+    let tile = this.getTileForEdit(position);
+    let filteredTiles = this.removeTileForEdit(position);
+    tile.content.image = urlText;
+    filteredTiles.push(tile);
+    this.setState({ tiles: filteredTiles });
   },
 
   changeTileText: function (position, text) {
@@ -88,15 +94,20 @@ const Gridterest = React.createClass({
   },
 
   changeTileColour: function (position, colour) {
-    console.log('colour change selected');
     let tile = this.getTileForEdit(position);
-    console.log(tile.style);
     let remainingTiles = this.removeTileForEdit(position);
-    console.log('tile', tile);
     tile.style.backgroundColor = colour;
     tile.content.style.backgroundColor = colour;
     remainingTiles.push(tile);
     this.setState({ tiles: remainingTiles });
+  },
+
+  setAllEditingToNull: function () {
+    this.setState({ editing: null,
+                    editingContentType: null,
+                    editingColour: null,
+                    editingText: null,
+                    editingImage: null });
   },
 
   getTileForEdit: function (position) {

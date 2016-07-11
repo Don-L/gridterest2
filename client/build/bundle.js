@@ -19708,10 +19708,10 @@
 	      tiles: [],
 	      selectedTiles: [],
 	      editing: null,
-	      editingContentType: false,
-	      editingColour: false,
-	      editingText: false,
-	      editingImage: false
+	      editingContentType: null,
+	      editingColour: null,
+	      editingText: null,
+	      editingImage: null
 	    };
 	  },
 	
@@ -19736,7 +19736,9 @@
 	        onTextSubmit: this.onTextSubmit,
 	        changeTileText: this.changeTileText,
 	        userRequestsEditColour: this.userRequestsEditColour,
-	        changeTileColour: this.changeTileColour
+	        changeTileColour: this.changeTileColour,
+	        userRequestsAddImage: this.userRequestsAddImage,
+	        changeImageURL: this.changeImageURL
 	      })
 	    );
 	  },
@@ -19748,12 +19750,16 @@
 	      editingContentType: true });
 	  },
 	
-	  setAllEditingToNull: function setAllEditingToNull() {
-	    this.setState({ editing: null,
-	      editingContentType: null,
-	      editingColour: null,
-	      editingText: null,
-	      editingImage: null });
+	  userRequestsAddImage: function userRequestsAddImage() {
+	    this.setState({ editingImage: true, editingContentType: null });
+	  },
+	
+	  changeImageURL: function changeImageURL(position, urlText) {
+	    var tile = this.getTileForEdit(position);
+	    var filteredTiles = this.removeTileForEdit(position);
+	    tile.content.image = urlText;
+	    filteredTiles.push(tile);
+	    this.setState({ tiles: filteredTiles });
 	  },
 	
 	  changeTileText: function changeTileText(position, text) {
@@ -19781,15 +19787,20 @@
 	  },
 	
 	  changeTileColour: function changeTileColour(position, colour) {
-	    console.log('colour change selected');
 	    var tile = this.getTileForEdit(position);
-	    console.log(tile.style);
 	    var remainingTiles = this.removeTileForEdit(position);
-	    console.log('tile', tile);
 	    tile.style.backgroundColor = colour;
 	    tile.content.style.backgroundColor = colour;
 	    remainingTiles.push(tile);
 	    this.setState({ tiles: remainingTiles });
+	  },
+	
+	  setAllEditingToNull: function setAllEditingToNull() {
+	    this.setState({ editing: null,
+	      editingContentType: null,
+	      editingColour: null,
+	      editingText: null,
+	      editingImage: null });
 	  },
 	
 	  getTileForEdit: function getTileForEdit(position) {
@@ -19851,7 +19862,7 @@
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _React$createElement));
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -19904,7 +19915,10 @@
 	        content: this.props.content,
 	        changeTileText: this.props.changeTileText,
 	        userRequestsEditColour: this.props.userRequestsEditColour,
-	        changeTileColour: this.props.changeTileColour })
+	        changeTileColour: this.props.changeTileColour,
+	        userRequestsAddImage: this.props.userRequestsAddImage,
+	        changeImageURL: this.props.changeImageURL
+	      })
 	    );
 	  },
 	
@@ -19997,6 +20011,24 @@
 	          React.createElement('input', { type: 'submit' })
 	        )
 	      );
+	    } else if (this.props.editingImage) {
+	      //editing image
+	      console.log('editing image');
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'form',
+	          null,
+	          React.createElement('input', { type: 'text',
+	            placeholder: 'IMAGE URL',
+	            onChange: this.changeImageURL
+	          }),
+	          React.createElement('input', { type: 'text', placeholder: '(OPTIONAL) LINK URL' }),
+	          React.createElement('input', { type: 'text', placeholder: 'CAPTION' }),
+	          React.createElement('input', { type: 'submit' })
+	        )
+	      );
 	    }
 	  },
 	
@@ -20010,9 +20042,17 @@
 	    this.props.onTextSubmit(this.props.position);
 	  },
 	
+	  changeImageURL: function changeImageURL(e) {
+	    e.preventDefault();
+	    this.props.changeImageURL(this.props.position, e.target.value);
+	  },
+	
 	  onInitialSelect: function onInitialSelect(e) {
+	    console.log(e.target.value === 'Add image');
 	    if (e.target.value === 'Change tile colour') {
 	      this.props.userRequestsEditColour(this.props.position);
+	    } else if (e.target.value === 'Add image') {
+	      this.props.userRequestsAddImage(this.props.position);
 	    }
 	  },
 	

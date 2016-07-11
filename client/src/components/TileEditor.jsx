@@ -29,6 +29,20 @@ const TileEditor = React.createClass({
                 <input type='submit'/>
               </form>
             </div>;
+    } else if (this.props.editingImage) { //editing image
+      console.log('editing image')
+      return <div>
+               <form>
+                 <input type='text'
+                        placeholder='IMAGE URL'
+                        onChange={this.changeImageURL}
+                        >
+                 </input>
+                 <input type='text' placeholder='(OPTIONAL) LINK URL'></input>
+                 <input type='text' placeholder='CAPTION'></input>
+                 <input type='submit'></input>
+               </form>
+             </div>;
     }
   },
 
@@ -42,9 +56,17 @@ const TileEditor = React.createClass({
     this.props.onTextSubmit(this.props.position);
   },
 
+  changeImageURL: function (e) {
+    e.preventDefault();
+    this.props.changeImageURL(this.props.position, e.target.value);
+  },
+
   onInitialSelect: function (e) {
+    console.log(e.target.value === 'Add image')
     if (e.target.value === 'Change tile colour') {
       this.props.userRequestsEditColour(this.props.position);
+    } else if (e.target.value === 'Add image') {
+      this.props.userRequestsAddImage(this.props.position);
     }
   },
 

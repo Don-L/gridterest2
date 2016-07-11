@@ -23,7 +23,11 @@ const Tile = React.createClass({
                           content={this.props.content}
                           changeTileText={this.props.changeTileText}
                           userRequestsEditColour={this.props.userRequestsEditColour}
-                          changeTileColour={this.props.changeTileColour}/>
+                          changeTileColour={this.props.changeTileColour}
+                          userRequestsAddImage={this.props.userRequestsAddImage}
+                          changeImageURL={this.props.changeImageURL}
+                          />
+
            </div>;
 
   },
