@@ -19735,7 +19735,8 @@
 	        userRequestsEdit: this.userRequestsEdit,
 	        onTextSubmit: this.onTextSubmit,
 	        changeTileText: this.changeTileText,
-	        userRequestsEditColour: this.userRequestsEditColour
+	        userRequestsEditColour: this.userRequestsEditColour,
+	        changeTileColour: this.changeTileColour
 	      })
 	    );
 	  },
@@ -19770,7 +19771,7 @@
 	    this.setState({ tiles: amendedTiles });
 	  },
 	
-	  onTextSubmit: function onTextSubmit(position) {
+	  onTextSubmit: function onTextSubmit() {
 	    this.setAllEditingToNull();
 	  },
 	
@@ -19779,11 +19780,23 @@
 	      editingContentType: null });
 	  },
 	
+	  changeTileColour: function changeTileColour(position, colour) {
+	    console.log('colour change selected');
+	    var tile = this.getTileForEdit(position);
+	    console.log(tile.style);
+	    var remainingTiles = this.removeTileForEdit(position);
+	    console.log('tile', tile);
+	    tile.style.backgroundColor = colour;
+	    tile.content.style.backgroundColor = colour;
+	    remainingTiles.push(tile);
+	    this.setState({ tiles: remainingTiles });
+	  },
+	
 	  getTileForEdit: function getTileForEdit(position) {
 	    var tileForEdit = this.state.tiles.filter(function (tile) {
 	      return tile.position === position;
 	    });
-	    return tileForEdit;
+	    return tileForEdit[0];
 	  },
 	
 	  removeTileForEdit: function removeTileForEdit(position) {
@@ -19838,7 +19851,7 @@
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _React$createElement));
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -19890,7 +19903,8 @@
 	        onTextSubmit: this.props.onTextSubmit,
 	        content: this.props.content,
 	        changeTileText: this.props.changeTileText,
-	        userRequestsEditColour: this.props.userRequestsEditColour })
+	        userRequestsEditColour: this.props.userRequestsEditColour,
+	        changeTileColour: this.props.changeTileColour })
 	    );
 	  },
 	
@@ -19979,7 +19993,8 @@
 	              null,
 	              'Purple'
 	            )
-	          )
+	          ),
+	          React.createElement('input', { type: 'submit' })
 	        )
 	      );
 	    }
@@ -19999,6 +20014,17 @@
 	    if (e.target.value === 'Change tile colour') {
 	      this.props.userRequestsEditColour(this.props.position);
 	    }
+	  },
+	
+	  onColourSelect: function onColourSelect(e) {
+	    e.preventDefault();
+	    console.log(e.target.value);
+	    this.props.changeTileColour(this.props.position, e.target.value);
+	  },
+	
+	  onColourSubmit: function onColourSubmit(e) {
+	    e.preventDefault();
+	    this.props.onTextSubmit();
 	  }
 	
 	});

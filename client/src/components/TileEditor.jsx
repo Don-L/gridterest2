@@ -26,6 +26,7 @@ const TileEditor = React.createClass({
                   <option>Green</option>
                   <option>Purple</option>
                 </select>
+                <input type='submit'/>
               </form>
             </div>;
     }
@@ -45,6 +46,18 @@ const TileEditor = React.createClass({
     if (e.target.value === 'Change tile colour') {
       this.props.userRequestsEditColour(this.props.position);
     }
+  },
+
+  onColourSelect: function (e) {
+    e.preventDefault();
+    console.log(e.target.value)
+    this.props.changeTileColour(this.props.position, e.target.value);
+  },
+
+  onColourSubmit: function (e) {
+    e.preventDefault();
+    this.props.onTextSubmit();
+
   }
 
 
