@@ -11,7 +11,8 @@ module.exports = [
       borderRadius: '3px',
       overflow: 'hidden',
       alignContent: 'center',
-      zIndex: 0
+      zIndex: 0,
+      outline: ''
     },
     content: {
       text: '<h1>Hello</h1><p>I am the content</p>',

@@ -8,7 +8,12 @@ const Tile = React.createClass({
   render: function () {
 
     if (this.props.position != this.props.editing) { //tile not being edited
-      return <div style={this.props.style} onDoubleClick={this.onDoubleClick}>
+      if (!(this.props.content.text || this.props.content.image)) { //empty tile
+        return <div style={this.props.style} onDoubleClick={this.onDoubleClick} onClick={this.onClick}>
+                  <TileContent content={this.props.content}/>
+               </div>;
+               //tile has contents
+      } else return <div style={this.props.style} onDoubleClick={this.onDoubleClick}>
                 <TileContent content={this.props.content}/>
              </div>;
     //tile being edited
@@ -34,6 +39,10 @@ const Tile = React.createClass({
 
   onDoubleClick: function () {
     this.props.userRequestsEdit(this.props.position);
+  },
+
+  onClick: function () {
+    this.props.tileSelected(this.props.position);
   }
 
 });

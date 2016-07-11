@@ -43,9 +43,30 @@ const Gridterest = React.createClass({
               changeTileColour={this.changeTileColour}
               userRequestsAddImage={this.userRequestsAddImage}
               changeImageURL={this.changeImageURL}
+              tileSelected={this.tileSelected}
         />
       </div>
     );
+  },
+
+  tileSelected: function (position) {
+    if (this.checkTileInSelected(position)) { //tile already selected
+      let tile = this.getTileForEdit(position);
+      let tiles = this.removeTileForEdit(position);
+      tile.style.outline = '';
+      tiles.push(tile);
+      this.setState({ tiles: tiles });
+      let amendedSelect = this.removeTileFromSelected(position);
+      this.setState({ selectedTiles: amendedSelect });
+    } else { let tile = this.getTileForEdit(position); //tile not selected
+      let tiles = this.removeTileForEdit(position);
+      tile.style.outline = 'black 1px solid';
+      tiles.push(tile);
+      this.setState({ tiles: tiles });
+      let newSelectedTiles = this.state.selectedTiles;
+      newSelectedTiles.push(position);
+      this.setState({ selectedTiles: newSelectedTiles });
+    }
   },
 
   userRequestsEdit: function (position) {
@@ -122,6 +143,24 @@ const Gridterest = React.createClass({
       return tile.position != position;
     });
     return tilesMinusEditedTile;
+  },
+
+  checkTileInSelected: function (position) {
+    let tiles = this.state.selectedTiles;
+    tiles = tiles.filter(function (number) {
+      return number === position;
+    });
+    if (tiles.length === 1) {
+      return true;
+    } else return false;
+  },
+
+  removeTileFromSelected: function (position) {
+    let tiles = this.state.selectedTiles;
+    tiles = tiles.filter(function (number) {
+      return number != position;
+    });
+    return tiles;
   }
 
 });

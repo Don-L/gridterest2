@@ -19738,9 +19738,32 @@
 	        userRequestsEditColour: this.userRequestsEditColour,
 	        changeTileColour: this.changeTileColour,
 	        userRequestsAddImage: this.userRequestsAddImage,
-	        changeImageURL: this.changeImageURL
+	        changeImageURL: this.changeImageURL,
+	        tileSelected: this.tileSelected
 	      })
 	    );
+	  },
+	
+	  tileSelected: function tileSelected(position) {
+	    if (this.checkTileInSelected(position)) {
+	      //tile already selected
+	      var tile = this.getTileForEdit(position);
+	      var tiles = this.removeTileForEdit(position);
+	      tile.style.outline = '';
+	      tiles.push(tile);
+	      this.setState({ tiles: tiles });
+	      var amendedSelect = this.removeTileFromSelected(position);
+	      this.setState({ selectedTiles: amendedSelect });
+	    } else {
+	      var _tile = this.getTileForEdit(position); //tile not selected
+	      var _tiles = this.removeTileForEdit(position);
+	      _tile.style.outline = 'black 1px solid';
+	      _tiles.push(_tile);
+	      this.setState({ tiles: _tiles });
+	      var newSelectedTiles = this.state.selectedTiles;
+	      newSelectedTiles.push(position);
+	      this.setState({ selectedTiles: newSelectedTiles });
+	    }
 	  },
 	
 	  userRequestsEdit: function userRequestsEdit(position) {
@@ -19815,6 +19838,24 @@
 	      return tile.position != position;
 	    });
 	    return tilesMinusEditedTile;
+	  },
+	
+	  checkTileInSelected: function checkTileInSelected(position) {
+	    var tiles = this.state.selectedTiles;
+	    tiles = tiles.filter(function (number) {
+	      return number === position;
+	    });
+	    if (tiles.length === 1) {
+	      return true;
+	    } else return false;
+	  },
+	
+	  removeTileFromSelected: function removeTileFromSelected(position) {
+	    var tiles = this.state.selectedTiles;
+	    tiles = tiles.filter(function (number) {
+	      return number != position;
+	    });
+	    return tiles;
 	  }
 	
 	});
@@ -19862,7 +19903,7 @@
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _React$createElement));
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -19896,7 +19937,15 @@
 	
 	    if (this.props.position != this.props.editing) {
 	      //tile not being edited
-	      return React.createElement(
+	      if (!(this.props.content.text || this.props.content.image)) {
+	        //empty tile
+	        return React.createElement(
+	          'div',
+	          { style: this.props.style, onDoubleClick: this.onDoubleClick, onClick: this.onClick },
+	          React.createElement(TileContent, { content: this.props.content })
+	        );
+	        //tile has contents
+	      } else return React.createElement(
 	        'div',
 	        { style: this.props.style, onDoubleClick: this.onDoubleClick },
 	        React.createElement(TileContent, { content: this.props.content })
@@ -19924,6 +19973,10 @@
 	
 	  onDoubleClick: function onDoubleClick() {
 	    this.props.userRequestsEdit(this.props.position);
+	  },
+	
+	  onClick: function onClick() {
+	    this.props.tileSelected(this.props.position);
 	  }
 	
 	});
@@ -20215,7 +20268,8 @@
 	    borderRadius: '3px',
 	    overflow: 'hidden',
 	    alignContent: 'center',
-	    zIndex: 0
+	    zIndex: 0,
+	    outline: ''
 	  },
 	  content: {
 	    text: '<h1>Hello</h1><p>I am the content</p>',

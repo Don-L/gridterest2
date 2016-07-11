@@ -34,6 +34,7 @@ const Grid = React.createClass({
                    changeTileColour={this.props.changeTileColour}
                    userRequestsAddImage={this.props.userRequestsAddImage}
                    changeImageURL={this.props.changeImageURL}
+                   tileSelected={this.props.tileSelected}
               />;
           }.bind(this));
 
