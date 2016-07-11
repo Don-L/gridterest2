@@ -19707,7 +19707,7 @@
 	    return {
 	      tiles: [],
 	      selectedTiles: [],
-	      editing: false,
+	      editing: null,
 	      editingContentType: false,
 	      editingColour: false,
 	      editingText: false,
@@ -19727,12 +19727,50 @@
 	      React.createElement(Nav, null),
 	      React.createElement(Grid, { tiles: this.state.tiles,
 	        selectedTiles: this.state.selectedTiles,
+	        editing: this.state.editing,
 	        editingContentType: this.state.editingContentType,
 	        editingColour: this.state.editingColour,
 	        editingText: this.state.editingText,
-	        editingImage: this.state.editingImage
+	        editingImage: this.state.editingImage,
+	        userRequestsEdit: this.userRequestsEdit,
+	        onTextSubmit: this.onTextSubmit,
+	        changeTileText: this.changeTileText
 	      })
 	    );
+	  },
+	
+	  userRequestsEdit: function userRequestsEdit(position) {
+	    if (this.state.editing === position) {
+	      this.setAllEditingToNull();
+	    } else this.setState({ editing: position,
+	      editingContentType: true });
+	  },
+	
+	  setAllEditingToNull: function setAllEditingToNull() {
+	    this.setState({ editing: null,
+	      editingContentType: null,
+	      editingColour: null,
+	      editingText: null,
+	      editingImage: null });
+	  },
+	
+	  changeTileText: function changeTileText(position, text) {
+	    var allTiles = this.state.tiles;
+	    var editedTile = allTiles.filter(function (tile) {
+	      return tile.position === position;
+	    });
+	    editedTile = editedTile[0];
+	    editedTile.content.text = text;
+	    var tilesMinusEditedTile = allTiles.filter(function (tile) {
+	      return tile.position != position;
+	    });
+	    tilesMinusEditedTile.push(editedTile);
+	    var amendedTiles = tilesMinusEditedTile;
+	    this.setState({ tiles: amendedTiles });
+	  },
+	
+	  onTextSubmit: function onTextSubmit(position) {
+	    this.setAllEditingToNull();
 	  }
 	
 	});
@@ -19744,6 +19782,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var React = __webpack_require__(1);
 	var Tile = __webpack_require__(161);
@@ -19766,12 +19806,20 @@
 	    });
 	
 	    tiles = tiles.map(function (tile) {
-	      return React.createElement(Tile, { key: tile.position,
+	      var _React$createElement;
+	
+	      return React.createElement(Tile, (_React$createElement = { key: tile.position,
 	        position: tile.position,
+	        editing: this.props.editing,
 	        style: tile.style,
-	        content: tile.content
-	      });
-	    });
+	        content: tile.content,
+	        userRequestsEdit: this.props.userRequestsEdit,
+	        editingContentType: this.props.editingContentType,
+	        editingColour: this.props.editingColour,
+	        editingText: this.props.editingText,
+	        editingImage: this.props.editingImage
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _React$createElement));
+	    }.bind(this));
 	
 	    return React.createElement(
 	      'div',
@@ -19801,12 +19849,34 @@
 	
 	
 	  render: function render() {
-	    return React.createElement(
+	
+	    if (this.props.position != this.props.editing) {
+	      //tile not being edited
+	      return React.createElement(
+	        'div',
+	        { style: this.props.style, onDoubleClick: this.onDoubleClick },
+	        React.createElement(TileContent, { content: this.props.content })
+	      );
+	      //tile being edited
+	    } else return React.createElement(
 	      'div',
-	      { style: this.props.style },
-	      React.createElement(TileContent, { content: this.props.content })
+	      { style: this.props.style, onDoubleClick: this.onDoubleClick },
+	      React.createElement(TileEditor, { editingContentType: this.props.editingContentType,
+	        editingColour: this.props.editingColour,
+	        editingText: this.props.editingText,
+	        editingImage: this.props.editingImage,
+	        userRequestsEdit: this.userRequestsEdit,
+	        position: this.props.position,
+	        onTextSubmit: this.props.onTextSubmit,
+	        content: this.props.content,
+	        changeTileText: this.props.changeTileText })
 	    );
+	  },
+	
+	  onDoubleClick: function onDoubleClick() {
+	    this.props.userRequestsEdit(this.props.position);
 	  }
+	
 	});
 	
 	module.exports = Tile;
@@ -19824,7 +19894,49 @@
 	
 	
 	  render: function render() {
-	    return React.createElement('div', null);
+	    if (this.props.editingContentType) {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'form',
+	          { onSubmit: this.onTextSubmit },
+	          React.createElement(
+	            'select',
+	            null,
+	            React.createElement(
+	              'option',
+	              null,
+	              'Add/edit text'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Change tile colour'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Add image'
+	            )
+	          ),
+	          React.createElement('textarea', { value: this.props.content.text,
+	            onChange: this.changeTileText
+	          }),
+	          React.createElement('input', { type: 'Submit' })
+	        )
+	      );
+	    }
+	  },
+	
+	  onTextSubmit: function onTextSubmit(e) {
+	    e.preventDefault();
+	    this.props.onTextSubmit(this.props.position);
+	  },
+	
+	  changeTileText: function changeTileText(e) {
+	    e.preventDefault();
+	    this.props.changeTileText(this.props.position, e.target.value);
 	  }
 	
 	});

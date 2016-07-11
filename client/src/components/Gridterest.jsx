@@ -11,7 +11,7 @@ const Gridterest = React.createClass({
       {
         tiles: [],
         selectedTiles: [],
-        editing: false,
+        editing: null,
         editingContentType: false,
         editingColour: false,
         editingText: false,
@@ -31,13 +31,53 @@ const Gridterest = React.createClass({
         <Nav/>
         <Grid tiles={this.state.tiles}
               selectedTiles={this.state.selectedTiles}
+              editing={this.state.editing}
               editingContentType={this.state.editingContentType}
               editingColour={this.state.editingColour}
               editingText={this.state.editingText}
               editingImage={this.state.editingImage}
+              userRequestsEdit={this.userRequestsEdit}
+              onTextSubmit={this.onTextSubmit}
+              changeTileText={this.changeTileText}
         />
       </div>
     );
+  },
+
+  userRequestsEdit: function (position) {
+    if (this.state.editing === position) {
+      this.setAllEditingToNull();
+    } else this.setState({ editing: position,
+                           editingContentType: true });
+  },
+
+  setAllEditingToNull: function () {
+    this.setState({ editing: null,
+                    editingContentType: null,
+                    editingColour: null,
+                    editingText: null,
+                    editingImage: null });
+  },
+
+  changeTileText: function (position, text) {
+    let allTiles = this.state.tiles;
+    let editedTile = allTiles.filter(function (tile) {
+      return tile.position === position;
+    }
+    );
+    editedTile = editedTile[0];
+    editedTile.content.text = text;
+    let tilesMinusEditedTile = allTiles.filter(function (tile) {
+      return tile.position != position;
+    }
+    );
+    tilesMinusEditedTile.push(editedTile);
+    let amendedTiles = tilesMinusEditedTile;
+    this.setState({ tiles: amendedTiles });
+  },
+
+  onTextSubmit: function (position) {
+    this.setAllEditingToNull();
   }
 
 });

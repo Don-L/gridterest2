@@ -6,10 +6,30 @@ const TileContent = require('./TileContent.jsx');
 const Tile = React.createClass({
 
   render: function () {
-    return <div style={this.props.style}>
-              <TileContent content={this.props.content}/>
+
+    if (this.props.position != this.props.editing) { //tile not being edited
+      return <div style={this.props.style} onDoubleClick={this.onDoubleClick}>
+                <TileContent content={this.props.content}/>
+             </div>;
+    //tile being edited
+    } else return <div style={this.props.style} onDoubleClick={this.onDoubleClick}>
+              <TileEditor editingContentType={this.props.editingContentType}
+                          editingColour={this.props.editingColour}
+                          editingText={this.props.editingText}
+                          editingImage={this.props.editingImage}
+                          userRequestsEdit={this.userRequestsEdit}
+                          position={this.props.position}
+                          onTextSubmit={this.props.onTextSubmit}
+                          content={this.props.content}
+                          changeTileText={this.props.changeTileText}/>
            </div>;
+
+  },
+
+  onDoubleClick: function () {
+    this.props.userRequestsEdit(this.props.position);
   }
+
 });
 
 module.exports = Tile;

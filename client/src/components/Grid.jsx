@@ -19,10 +19,19 @@ const Grid = React.createClass({
     tiles = tiles.map(function (tile) {
       return <Tile key={tile.position}
                    position={tile.position}
+                   editing={this.props.editing}
                    style={tile.style}
                    content={tile.content}
+                   userRequestsEdit={this.props.userRequestsEdit}
+                   editingContentType={this.props.editingContentType}
+                   editingColour={this.props.editingColour}
+                   editingText={this.props.editingText}
+                   editingImage={this.props.editingImage}
+                   userRequestsEdit={this.props.userRequestsEdit}
+                   onTextSubmit={this.props.onTextSubmit}
+                   changeTileText={this.props.changeTileText}
               />;
-          });
+          }.bind(this));
 
     return (<div className='grid-div'>{ tiles }</div>);
     console.log(tiles);
