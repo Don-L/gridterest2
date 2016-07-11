@@ -32,7 +32,7 @@ const TileEditor = React.createClass({
     } else if (this.props.editingImage) { //editing image
       console.log('editing image')
       return <div>
-               <form>
+               <form onSubmit={this.onImageSubmit}>
                  <input type='text'
                         placeholder='IMAGE URL'
                         onChange={this.changeImageURL}
@@ -59,6 +59,11 @@ const TileEditor = React.createClass({
   changeImageURL: function (e) {
     e.preventDefault();
     this.props.changeImageURL(this.props.position, e.target.value);
+  },
+
+  onImageSubmit: function (e) {
+    e.preventDefault();
+    this.props.onTextSubmit();
   },
 
   onInitialSelect: function (e) {

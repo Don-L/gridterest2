@@ -20019,7 +20019,7 @@
 	        null,
 	        React.createElement(
 	          'form',
-	          null,
+	          { onSubmit: this.onImageSubmit },
 	          React.createElement('input', { type: 'text',
 	            placeholder: 'IMAGE URL',
 	            onChange: this.changeImageURL
@@ -20045,6 +20045,11 @@
 	  changeImageURL: function changeImageURL(e) {
 	    e.preventDefault();
 	    this.props.changeImageURL(this.props.position, e.target.value);
+	  },
+	
+	  onImageSubmit: function onImageSubmit(e) {
+	    e.preventDefault();
+	    this.props.onTextSubmit();
 	  },
 	
 	  onInitialSelect: function onInitialSelect(e) {
@@ -20219,7 +20224,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20243,7 +20248,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20267,7 +20272,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20291,7 +20296,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20315,7 +20320,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20339,7 +20344,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20363,7 +20368,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20387,7 +20392,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20411,7 +20416,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20435,7 +20440,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20459,7 +20464,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20483,7 +20488,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20507,7 +20512,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20531,7 +20536,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20555,7 +20560,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20579,7 +20584,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20603,7 +20608,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20627,7 +20632,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20651,7 +20656,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20675,7 +20680,7 @@
 	    imageCaption: '',
 	    imageLink: '',
 	    style: {
-	      backgroundColor: 'yellow',
+	      backgroundColor: '',
 	      width: '100%'
 	    }
 	  }
@@ -20695,12 +20700,20 @@
 	
 	  render: function render() {
 	
-	    var markUp = function () {
-	      return { __html: this.props.content.text };
-	    }.bind(this);
+	    if (this.props.content.image) {
+	      return React.createElement(
+	        'div',
+	        { style: this.props.content.style },
+	        React.createElement('img', { src: this.props.content.image })
+	      );
+	    } else {
+	      var markUp = function () {
+	        return { __html: this.props.content.text };
+	      }.bind(this);
 	
-	    return React.createElement('div', { style: this.props.content.style,
-	      dangerouslySetInnerHTML: markUp() });
+	      return React.createElement('div', { style: this.props.content.style,
+	        dangerouslySetInnerHTML: markUp() });
+	    }
 	  }
 	});
 	

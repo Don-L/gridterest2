@@ -20,7 +20,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -46,7 +46,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -72,7 +72,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -98,7 +98,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -124,7 +124,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -150,7 +150,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -176,7 +176,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -202,7 +202,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -228,7 +228,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -254,7 +254,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -280,7 +280,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -306,7 +306,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -332,7 +332,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -358,7 +358,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -384,7 +384,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -410,7 +410,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -436,7 +436,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -462,7 +462,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -488,7 +488,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
@@ -514,7 +514,7 @@ module.exports = [
       imageCaption: '',
       imageLink: '',
       style: {
-        backgroundColor: 'yellow',
+        backgroundColor: '',
         width: '100%'
       }
     }
