@@ -19711,7 +19711,9 @@
 	      editingContentType: null,
 	      editingColour: null,
 	      editingText: null,
-	      editingImage: null
+	      editingImage: null,
+	      dragging: null,
+	      dragTarget: null
 	    };
 	  },
 	
@@ -19739,9 +19741,33 @@
 	        changeTileColour: this.changeTileColour,
 	        userRequestsAddImage: this.userRequestsAddImage,
 	        changeImageURL: this.changeImageURL,
-	        tileSelected: this.tileSelected
+	        tileSelected: this.tileSelected,
+	        logDragging: this.logDragging,
+	        logDragTarget: this.logDragTarget,
+	        swapPositions: this.swapPositions
 	      })
 	    );
+	  },
+	
+	  logDragging: function logDragging(position) {
+	    this.setState({ dragging: position });
+	  },
+	
+	  logDragTarget: function logDragTarget(position) {
+	    this.setState({ dragTarget: position });
+	  },
+	
+	  swapPositions: function swapPositions() {
+	    var draggedTile = this.getTileForEdit(this.state.dragging);
+	    var targetTile = this.getTileForEdit(this.state.dragTarget);
+	    var newTiles = this.state.tiles.filter(function (tile) {
+	      return tile.position != draggedTile && tile.position != targetTile;
+	    });
+	    draggedTile.position = this.state.dragTarget;
+	    targetTile.position = this.state.dragging;
+	    newTiles.push(draggedTile);
+	    newTiles.push(targetTile);
+	    this.setState({ tiles: newTiles });
 	  },
 	
 	  tileSelected: function tileSelected(position) {
@@ -19815,12 +19841,14 @@
 	    } else if (this.state.selectedTiles.length === 2) {
 	      var tile = this.getTileForEdit(position);
 	      var newTiles = this.removeTileForEdit(position);
-	      tile.content.style.backgroundColor = 'yellow';
+	      tile.content.style.backgroundColor = 'inherit';
 	      tile.content.style.width = 'calc((95vw / 2.5) + 0.76vw)';
 	      tile.content.style.height = 'calc(1520vw / 50)';
 	      tile.content.style.position = 'absolute';
 	      tile.content.style.zIndex = 1;
 	      tile.content.style.pointerEvents = 'none';
+	      tile.content.style.borderRadius = '3px';
+	      tile.content.style.overflow = 'hidden';
 	      newTiles.push(tile);
 	      this.setState({ tiles: newTiles });
 	
@@ -19834,8 +19862,8 @@
 	          var entry = _step.value;
 	
 	          this.tileSelected(entry);
-	          console.log('look', this.state.selectedTiles);
 	        }
+	        //not sure why the above doesn't work as intended
 	      } catch (err) {
 	        _didIteratorError = true;
 	        _iteratorError = err;
@@ -19961,7 +19989,7 @@
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _React$createElement));
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -19999,19 +20027,38 @@
 	        //empty tile
 	        return React.createElement(
 	          'div',
-	          { style: this.props.style, onDoubleClick: this.onDoubleClick, onClick: this.onClick },
+	          {
+	            style: this.props.style,
+	            onDoubleClick: this.onDoubleClick,
+	            onClick: this.onClick,
+	            onDragStart: this.onDragStart,
+	            onDragEnter: this.onDragEnter,
+	            onDragEnd: this.onDragEnd
+	          },
 	          React.createElement(TileContent, { content: this.props.content })
 	        );
 	        //tile has contents
 	      } else return React.createElement(
 	        'div',
-	        { style: this.props.style, onDoubleClick: this.onDoubleClick },
+	        {
+	          style: this.props.style,
+	          onDoubleClick: this.onDoubleClick,
+	          onDragStart: this.onDragStart,
+	          onDragEnter: this.onDragEnter,
+	          onDragEnd: this.onDragEnd
+	        },
 	        React.createElement(TileContent, { content: this.props.content })
 	      );
 	      //tile being edited
 	    } else return React.createElement(
 	      'div',
-	      { style: this.props.style, onDoubleClick: this.onDoubleClick },
+	      {
+	        style: this.props.style,
+	        onDoubleClick: this.onDoubleClick,
+	        onDragStart: this.onDragStart,
+	        onDragEnter: this.onDragEnter,
+	        onDragEnd: this.onDragEnd
+	      },
 	      React.createElement(TileEditor, { editingContentType: this.props.editingContentType,
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
@@ -20037,6 +20084,18 @@
 	    if (e.shiftKey === true) {
 	      this.props.tileSelected(this.props.position);
 	    }
+	  },
+	
+	  onDragStart: function onDragStart() {
+	    this.props.logDragging(this.props.position);
+	  },
+	
+	  onDragEnter: function onDragEnter() {
+	    this.props.logDragTarget(this.props.position);
+	  },
+	
+	  onDragEnd: function onDragEnd() {
+	    this.props.swapPositions(this.props.position);
 	  }
 	
 	});

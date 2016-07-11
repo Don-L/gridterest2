@@ -15,7 +15,9 @@ const Gridterest = React.createClass({
         editingContentType: null,
         editingColour: null,
         editingText: null,
-        editingImage: null
+        editingImage: null,
+        dragging: null,
+        dragTarget: null
       }
     );
   },
@@ -44,9 +46,34 @@ const Gridterest = React.createClass({
               userRequestsAddImage={this.userRequestsAddImage}
               changeImageURL={this.changeImageURL}
               tileSelected={this.tileSelected}
+              logDragging={this.logDragging}
+              logDragTarget={this.logDragTarget}
+              swapPositions={this.swapPositions}
         />
       </div>
     );
+  },
+
+  logDragging: function (position) {
+    this.setState({ dragging: position });
+  },
+
+  logDragTarget: function (position) {
+    this.setState({ dragTarget: position });
+  },
+
+  swapPositions: function () {
+    let draggedTile = this.getTileForEdit(this.state.dragging);
+    let targetTile = this.getTileForEdit(this.state.dragTarget);
+    let newTiles = this.state.tiles.filter(function (tile) {
+      return ((tile.position != draggedTile) && (tile.position != targetTile));
+    }
+    );
+    draggedTile.position = this.state.dragTarget;
+    targetTile.position = this.state.dragging;
+    newTiles.push(draggedTile);
+    newTiles.push(targetTile);
+    this.setState({ tiles: newTiles });
   },
 
   tileSelected: function (position) {
@@ -121,20 +148,22 @@ const Gridterest = React.createClass({
     } else if (this.state.selectedTiles.length === 2) {
       let tile = this.getTileForEdit(position);
       let newTiles = this.removeTileForEdit(position);
-      tile.content.style.backgroundColor = 'yellow';
+      tile.content.style.backgroundColor = 'inherit';
       tile.content.style.width = 'calc((95vw / 2.5) + 0.76vw)';
       tile.content.style.height = 'calc(1520vw / 50)';
       tile.content.style.position = 'absolute';
       tile.content.style.zIndex = 1;
       tile.content.style.pointerEvents = 'none';
+      tile.content.style.borderRadius = '3px';
+      tile.content.style.overflow = 'hidden';
       newTiles.push(tile);
       this.setState({ tiles: newTiles });
 
       this.setAllEditingToNull();
       for (let entry of this.state.selectedTiles) {
         this.tileSelected(entry);
-        console.log('look', this.state.selectedTiles)
       }
+      //not sure why the above doesn't work as intended
       this.setState({ selectedTiles: [] });
     }
 

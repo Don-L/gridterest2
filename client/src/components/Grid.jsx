@@ -35,6 +35,9 @@ const Grid = React.createClass({
                    userRequestsAddImage={this.props.userRequestsAddImage}
                    changeImageURL={this.props.changeImageURL}
                    tileSelected={this.props.tileSelected}
+                   logDragging={this.props.logDragging}
+                   logDragTarget={this.props.logDragTarget}
+                   swapPositions={this.props.swapPositions}
               />;
           }.bind(this));
 
