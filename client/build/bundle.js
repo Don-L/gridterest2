@@ -20224,14 +20224,15 @@
 	      );
 	    } else if (this.props.editingTileSize) {
 	      //editing tile size
-	      var optionStrings = Gridfunc.createGroupSizeStrings(this.props.position, this.props.columns, this.props.gridSize);
-	      var options = optionStrings.map(function (string) {
+	      var pairsAndStrings = Gridfunc.makeArrayOfPairsAndStrings(this.props.position, this.props.columns, this.props.gridSize);
+	      var options = pairsAndStrings.map(function (triplet) {
 	        return React.createElement(
 	          'option',
-	          { key: string },
-	          string
+	          { key: triplet[1], value: triplet[0] },
+	          triplet[1]
 	        );
 	      });
+	
 	      return React.createElement(
 	        'div',
 	        null,
@@ -20297,7 +20298,7 @@
 /* 163 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	var Gridfunc = {
 	
@@ -20412,7 +20413,7 @@
 	    var colStrings = [];
 	    var i = 1;
 	    while (i <= columns) {
-	      colStrings.push(i + "x");
+	      colStrings.push(i + 'x');
 	      i++;
 	    }
 	    var colsAndRows = [];
@@ -20426,7 +20427,7 @@
 	
 	        var j = 1;
 	        while (j <= rows) {
-	          colsAndRows.push("" + col + j);
+	          colsAndRows.push('' + col + j);
 	          j++;
 	        }
 	      }
@@ -20446,6 +20447,45 @@
 	    }
 	
 	    return colsAndRows;
+	  },
+	
+	  convertStringsToPairs: function convertStringsToPairs(array) {
+	    var pairs = [];
+	    var _iteratorNormalCompletion2 = true;
+	    var _didIteratorError2 = false;
+	    var _iteratorError2 = undefined;
+	
+	    try {
+	      for (var _iterator2 = array[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	        var string = _step2.value;
+	
+	        pairs.push([string.split('x')[0], string.split('x')[1]]);
+	      }
+	    } catch (err) {
+	      _didIteratorError2 = true;
+	      _iteratorError2 = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	          _iterator2.return();
+	        }
+	      } finally {
+	        if (_didIteratorError2) {
+	          throw _iteratorError2;
+	        }
+	      }
+	    }
+	
+	    return pairs;
+	  },
+	
+	  makeArrayOfPairsAndStrings: function makeArrayOfPairsAndStrings(position, cols, tiles) {
+	    var strings = this.createGroupSizeStrings(position, cols, tiles);
+	    var pairs = this.convertStringsToPairs(strings);
+	    var array = pairs.map(function (pair, i) {
+	      return [pairs[i], strings[i]];
+	    });
+	    return array;
 	  }
 	
 	};

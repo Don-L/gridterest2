@@ -166,12 +166,27 @@ describe('Gridfunc', function () {
     var tiles2 = 20;
     var lastTileAndTilesLeft2 = Gridfunc.freeTilesInColumn(position2, columns2, tiles2)
     assert.equal(4, lastTileAndTilesLeft2);
-  })
+  });
   it('can generate an array of strings representing the available group sizes for a given tile position', function () {
     var position = 1;
     var columns = 5
     var tiles = 20;
     var strings = Gridfunc.createGroupSizeStrings(position, columns, tiles);
     console.log(strings);
+  });
+  it('can convert one of the arrays generated above into an array of column/row pairs', function () {
+    var position = 1;
+    var columns = 5
+    var tiles = 20;
+    var strings = Gridfunc.createGroupSizeStrings(position, columns, tiles);
+    var pairs = Gridfunc.convertStringsToPairs(strings);
+    console.log(pairs);
+  });
+  it('can return an array of column/row/string triplets', function () {
+    var position = 1;
+    var columns = 5
+    var tiles = 20;
+    var triplets = Gridfunc.makeArrayOfPairsAndStrings(position, columns, tiles);
+    console.log(triplets);
   })
 });

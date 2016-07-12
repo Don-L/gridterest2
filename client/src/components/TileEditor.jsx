@@ -45,10 +45,11 @@ const TileEditor = React.createClass({
                </form>
              </div>;
     } else if (this.props.editingTileSize) { //editing tile size
-      let optionStrings = Gridfunc.createGroupSizeStrings(this.props.position, this.props.columns, this.props.gridSize);
-      let options = optionStrings.map(function (string) {
-        return <option key={string}>{string}</option>;
+      let pairsAndStrings = Gridfunc.makeArrayOfPairsAndStrings(this.props.position, this.props.columns, this.props.gridSize);
+      let options = pairsAndStrings.map(function (triplet) {
+        return <option key={triplet[1]} value={triplet[0]}>{triplet[1]}</option>;
       });
+
       return <div>
                <form>
                  <select>

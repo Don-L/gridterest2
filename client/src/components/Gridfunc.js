@@ -144,8 +144,26 @@ const Gridfunc = {
       }
     }
     return colsAndRows;
+  },
+
+  convertStringsToPairs: function (array) {
+    var pairs = [];
+    for (var string of array) {
+      pairs.push([string.split('x')[0], string.split('x')[1]]);
+    }
+    return pairs;
+  },
+
+  makeArrayOfPairsAndStrings: function (position, cols, tiles) {
+    var strings = this.createGroupSizeStrings(position, cols, tiles);
+    var pairs = this.convertStringsToPairs(strings);
+    var array = pairs.map(function (pair, i) {
+      return [pairs[i], strings[i]];
+    });
+    return array;
   }
 
 };
+
 
 module.exports = Gridfunc;
