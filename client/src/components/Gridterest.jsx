@@ -17,7 +17,7 @@ const Gridterest = React.createClass({
         editingColour: null,
         editingText: null,
         editingImage: null,
-        editingGroupSize: null,
+        editingTileSize: null,
         dragging: null,
         dragTarget: null
       }
@@ -41,7 +41,7 @@ const Gridterest = React.createClass({
               editingColour={this.state.editingColour}
               editingText={this.state.editingText}
               editingImage={this.state.editingImage}
-              editingGroupSize={this.state.editingGroupSize}
+              editingTileSize={this.state.editingTileSize}
               userRequestsEdit={this.userRequestsEdit}
               onTextSubmit={this.onTextSubmit}
               changeTileText={this.changeTileText}
@@ -53,6 +53,7 @@ const Gridterest = React.createClass({
               logDragging={this.logDragging}
               logDragTarget={this.logDragTarget}
               swapPositions={this.swapPositions}
+              userRequestsChangeTileSize={this.userRequestsChangeTileSize}
         />
       </div>
     );
@@ -117,6 +118,10 @@ const Gridterest = React.createClass({
 
   userRequestsAddImage: function () {
     this.setState({ editingImage: true, editingContentType: null });
+  },
+
+  userRequestsChangeTileSize: function () {
+    this.setState({ editingTileSize: true, editingContentType: null });
   },
 
   changeImageURL: function (position, urlText) {

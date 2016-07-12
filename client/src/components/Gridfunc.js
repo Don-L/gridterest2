@@ -122,11 +122,28 @@ const Gridfunc = {
   freeTilesInColumn: function (position, columns, tiles) {
     var lastInRow = this.freeTilesInRow(position, columns);
     var lastInRow = lastInRow[0];
-    if (lastInRow === tiles) {
-      return 1;
-    } else {
-      return 1 + ((tiles - lastInRow) / columns);
+    return 1 + ((tiles - lastInRow) / columns);
+  },
+
+  createGroupSizeStrings: function (position, cols, tiles) {
+    var columns = this.freeTilesInRow(position, cols);
+    var columns = columns[1];
+    var rows = this.freeTilesInColumn(position, cols, tiles);
+    var colStrings = [];
+    var i = 1;
+    while (i <= columns) {
+      colStrings.push(`${i}x`);
+      i++;
     }
+    var colsAndRows = [];
+    for (var col of colStrings) {
+      var j = 1;
+      while (j <= rows) {
+        colsAndRows.push(`${col}${j}`);
+        j++;
+      }
+    }
+    return colsAndRows;
   }
 
 };

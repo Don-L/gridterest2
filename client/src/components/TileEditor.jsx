@@ -1,4 +1,5 @@
 const React = require('react');
+const Gridfunc = require('./Gridfunc.js');
 
 const TileEditor = React.createClass({
 
@@ -43,8 +44,18 @@ const TileEditor = React.createClass({
                  <input type='submit'></input>
                </form>
              </div>;
-    } else if (this.props.editingGroupSize) {
-      
+    } else if (this.props.editingTileSize) { //editing tile size
+      let optionStrings = Gridfunc.createGroupSizeStrings(this.props.position, this.props.columns, this.props.gridSize);
+      let options = optionStrings.map(function (string) {
+        return <option key={string}>{string}</option>;
+      });
+      return <div>
+               <form>
+                 <select>
+                   {options}
+                 </select>
+               </form>
+             </div>
     }
   },
 
@@ -69,11 +80,12 @@ const TileEditor = React.createClass({
   },
 
   onInitialSelect: function (e) {
-    console.log(e.target.value === 'Add image')
     if (e.target.value === 'Change tile colour') {
       this.props.userRequestsEditColour(this.props.position);
     } else if (e.target.value === 'Add image') {
       this.props.userRequestsAddImage(this.props.position);
+    } else if (e.target.value === 'Change tile size') {
+      this.props.userRequestsChangeTileSize(this.props.position);
     }
   },
 

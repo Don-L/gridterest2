@@ -19713,7 +19713,7 @@
 	      editingColour: null,
 	      editingText: null,
 	      editingImage: null,
-	      editingGroupSize: null,
+	      editingTileSize: null,
 	      dragging: null,
 	      dragTarget: null
 	    };
@@ -19737,7 +19737,7 @@
 	        editingColour: this.state.editingColour,
 	        editingText: this.state.editingText,
 	        editingImage: this.state.editingImage,
-	        editingGroupSize: this.state.editingGroupSize,
+	        editingTileSize: this.state.editingTileSize,
 	        userRequestsEdit: this.userRequestsEdit,
 	        onTextSubmit: this.onTextSubmit,
 	        changeTileText: this.changeTileText,
@@ -19748,7 +19748,8 @@
 	        tileSelected: this.tileSelected,
 	        logDragging: this.logDragging,
 	        logDragTarget: this.logDragTarget,
-	        swapPositions: this.swapPositions
+	        swapPositions: this.swapPositions,
+	        userRequestsChangeTileSize: this.userRequestsChangeTileSize
 	      })
 	    );
 	  },
@@ -19812,6 +19813,10 @@
 	
 	  userRequestsAddImage: function userRequestsAddImage() {
 	    this.setState({ editingImage: true, editingContentType: null });
+	  },
+	
+	  userRequestsChangeTileSize: function userRequestsChangeTileSize() {
+	    this.setState({ editingTileSize: true, editingContentType: null });
 	  },
 	
 	  changeImageURL: function changeImageURL(position, urlText) {
@@ -19986,6 +19991,7 @@
 	      return React.createElement(Tile, (_React$createElement = { key: tile.position,
 	        position: tile.position,
 	        columns: this.props.columns,
+	        gridSize: this.props.tiles.length,
 	        editing: this.props.editing,
 	        style: tile.style,
 	        content: tile.content,
@@ -19994,8 +20000,8 @@
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage,
-	        editingGroupSize: this.props.editingGroupSize
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _React$createElement));
+	        editingTileSize: this.props.editingTileSize
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _defineProperty(_React$createElement, 'userRequestsChangeTileSize', this.props.userRequestsChangeTileSize), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -20068,9 +20074,10 @@
 	      React.createElement(TileEditor, { editingContentType: this.props.editingContentType,
 	        editingColour: this.props.editingColour,
 	        columns: this.props.columns,
+	        gridSize: this.props.gridSize,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage,
-	        editingGroupSize: this.props.editingGroupSize,
+	        editingTileSize: this.props.editingTileSize,
 	        userRequestsEdit: this.userRequestsEdit,
 	        position: this.props.position,
 	        onTextSubmit: this.props.onTextSubmit,
@@ -20079,7 +20086,8 @@
 	        userRequestsEditColour: this.props.userRequestsEditColour,
 	        changeTileColour: this.props.changeTileColour,
 	        userRequestsAddImage: this.props.userRequestsAddImage,
-	        changeImageURL: this.props.changeImageURL
+	        changeImageURL: this.props.changeImageURL,
+	        userRequestsChangeTileSize: this.props.userRequestsChangeTileSize
 	      })
 	    );
 	  },
@@ -20117,6 +20125,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(1);
+	var Gridfunc = __webpack_require__(163);
 	
 	var TileEditor = React.createClass({
 	  displayName: 'TileEditor',
@@ -20213,7 +20222,30 @@
 	          React.createElement('input', { type: 'submit' })
 	        )
 	      );
-	    } else if (this.props.editingGroupSize) {}
+	    } else if (this.props.editingTileSize) {
+	      //editing tile size
+	      var optionStrings = Gridfunc.createGroupSizeStrings(this.props.position, this.props.columns, this.props.gridSize);
+	      var options = optionStrings.map(function (string) {
+	        return React.createElement(
+	          'option',
+	          { key: string },
+	          string
+	        );
+	      });
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'form',
+	          null,
+	          React.createElement(
+	            'select',
+	            null,
+	            options
+	          )
+	        )
+	      );
+	    }
 	  },
 	
 	  changeTileText: function changeTileText(e) {
@@ -20237,11 +20269,12 @@
 	  },
 	
 	  onInitialSelect: function onInitialSelect(e) {
-	    console.log(e.target.value === 'Add image');
 	    if (e.target.value === 'Change tile colour') {
 	      this.props.userRequestsEditColour(this.props.position);
 	    } else if (e.target.value === 'Add image') {
 	      this.props.userRequestsAddImage(this.props.position);
+	    } else if (e.target.value === 'Change tile size') {
+	      this.props.userRequestsChangeTileSize(this.props.position);
 	    }
 	  },
 	
@@ -20369,11 +20402,50 @@
 	  freeTilesInColumn: function freeTilesInColumn(position, columns, tiles) {
 	    var lastInRow = this.freeTilesInRow(position, columns);
 	    var lastInRow = lastInRow[0];
-	    if (lastInRow === tiles) {
-	      return 1;
-	    } else {
-	      return 1 + (tiles - lastInRow) / columns;
+	    return 1 + (tiles - lastInRow) / columns;
+	  },
+	
+	  createGroupSizeStrings: function createGroupSizeStrings(position, cols, tiles) {
+	    var columns = this.freeTilesInRow(position, cols);
+	    var columns = columns[1];
+	    var rows = this.freeTilesInColumn(position, cols, tiles);
+	    var colStrings = [];
+	    var i = 1;
+	    while (i <= columns) {
+	      colStrings.push(i + "x");
+	      i++;
 	    }
+	    var colsAndRows = [];
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+	
+	    try {
+	      for (var _iterator = colStrings[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var col = _step.value;
+	
+	        var j = 1;
+	        while (j <= rows) {
+	          colsAndRows.push("" + col + j);
+	          j++;
+	        }
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+	
+	    return colsAndRows;
 	  }
 	
 	};

@@ -167,4 +167,11 @@ describe('Gridfunc', function () {
     var lastTileAndTilesLeft2 = Gridfunc.freeTilesInColumn(position2, columns2, tiles2)
     assert.equal(4, lastTileAndTilesLeft2);
   })
+  it('can generate an array of strings representing the available group sizes for a given tile position', function () {
+    var position = 1;
+    var columns = 5
+    var tiles = 20;
+    var strings = Gridfunc.createGroupSizeStrings(position, columns, tiles);
+    console.log(strings);
+  })
 });

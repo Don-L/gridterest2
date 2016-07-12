@@ -20,6 +20,7 @@ const Grid = React.createClass({
       return <Tile key={tile.position}
                    position={tile.position}
                    columns={this.props.columns}
+                   gridSize={this.props.tiles.length}
                    editing={this.props.editing}
                    style={tile.style}
                    content={tile.content}
@@ -28,7 +29,7 @@ const Grid = React.createClass({
                    editingColour={this.props.editingColour}
                    editingText={this.props.editingText}
                    editingImage={this.props.editingImage}
-                   editingGroupSize={this.props.editingGroupSize}
+                   editingTileSize={this.props.editingTileSize}
                    userRequestsEdit={this.props.userRequestsEdit}
                    onTextSubmit={this.props.onTextSubmit}
                    changeTileText={this.props.changeTileText}
@@ -40,6 +41,7 @@ const Grid = React.createClass({
                    logDragging={this.props.logDragging}
                    logDragTarget={this.props.logDragTarget}
                    swapPositions={this.props.swapPositions}
+                   userRequestsChangeTileSize={this.props.userRequestsChangeTileSize}
               />;
           }.bind(this));
 

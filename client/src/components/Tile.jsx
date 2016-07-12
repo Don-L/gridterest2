@@ -40,9 +40,10 @@ const Tile = React.createClass({
                     <TileEditor editingContentType={this.props.editingContentType}
                                 editingColour={this.props.editingColour}
                                 columns={this.props.columns}
+                                gridSize={this.props.gridSize}
                                 editingText={this.props.editingText}
                                 editingImage={this.props.editingImage}
-                                editingGroupSize={this.props.editingGroupSize}
+                                editingTileSize={this.props.editingTileSize}
                                 userRequestsEdit={this.userRequestsEdit}
                                 position={this.props.position}
                                 onTextSubmit={this.props.onTextSubmit}
@@ -52,6 +53,7 @@ const Tile = React.createClass({
                                 changeTileColour={this.props.changeTileColour}
                                 userRequestsAddImage={this.props.userRequestsAddImage}
                                 changeImageURL={this.props.changeImageURL}
+                                userRequestsChangeTileSize={this.props.userRequestsChangeTileSize}
                                 />
                   </div>;
 
