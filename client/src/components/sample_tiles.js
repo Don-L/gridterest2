@@ -3,16 +3,17 @@ module.exports = [
   { position: 1,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
+      // height: 'calc (95vw / 5)',
       backgroundColor: '#98c377',
       display: 'inline-block',
       margin: '0.38vw',
       borderRadius: '3px',
       overflow: 'hidden',
       alignContent: 'center',
-      zIndex: 0,
-      outline: ''
+      zIndex: 0
+
     },
     content: {
       text: '',
@@ -30,7 +31,7 @@ module.exports = [
   { position: 2,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -39,6 +40,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -56,7 +58,7 @@ module.exports = [
   { position: 3,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -65,6 +67,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -82,7 +85,7 @@ module.exports = [
   { position: 4,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -91,6 +94,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -108,7 +112,7 @@ module.exports = [
   { position: 5,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -117,6 +121,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -134,7 +139,7 @@ module.exports = [
   { position: 6,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -143,6 +148,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -160,7 +166,7 @@ module.exports = [
   { position: 7,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -169,6 +175,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -186,7 +193,7 @@ module.exports = [
   { position: 8,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -195,6 +202,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -212,7 +220,7 @@ module.exports = [
   { position: 9,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -221,6 +229,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -238,7 +247,7 @@ module.exports = [
   { position: 10,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -247,6 +256,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -264,7 +274,7 @@ module.exports = [
   { position: 11,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -273,6 +283,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -290,7 +301,7 @@ module.exports = [
   { position: 12,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -299,6 +310,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -316,7 +328,7 @@ module.exports = [
   { position: 13,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -325,6 +337,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -342,7 +355,7 @@ module.exports = [
   { position: 14,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -351,6 +364,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -368,7 +382,7 @@ module.exports = [
   { position: 15,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -377,6 +391,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -394,7 +409,7 @@ module.exports = [
   { position: 16,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -403,6 +418,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -420,7 +436,7 @@ module.exports = [
   { position: 17,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -429,6 +445,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -446,7 +463,7 @@ module.exports = [
   { position: 18,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -455,6 +472,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -472,7 +490,7 @@ module.exports = [
   { position: 19,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -481,6 +499,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',
@@ -498,7 +517,7 @@ module.exports = [
   { position: 20,
     style: {
       width: 'calc(95vw / 5)',
-      maxWidth: 'calc(95vw / 5)',
+      // maxWidth: 'calc(95vw / 5)',
       height: 'calc(1520vw / 50)',
       backgroundColor: '#98c377',
       display: 'inline-block',
@@ -507,6 +526,7 @@ module.exports = [
       overflow: 'hidden',
       alignContent: 'center',
       zIndex: 0
+
     },
     content: {
       text: '',

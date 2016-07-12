@@ -49,12 +49,12 @@ const TileEditor = React.createClass({
       let options = pairsAndStrings.map(function (triplet) {
         return <option key={triplet[1]} value={triplet[0]}>{triplet[1]}</option>;
       });
-
       return <div>
-               <form>
-                 <select>
+               <form onSubmit={this.onSizeSubmit}>
+                 <select onChange={this.onSizeSelect}>
                    {options}
                  </select>
+                 <input type='submit'/>
                </form>
              </div>
     }
@@ -92,14 +92,26 @@ const TileEditor = React.createClass({
 
   onColourSelect: function (e) {
     e.preventDefault();
-    console.log(e.target.value)
     this.props.changeTileColour(this.props.position, e.target.value);
   },
 
   onColourSubmit: function (e) {
     e.preventDefault();
     this.props.onTextSubmit();
+  },
 
+  onSizeSelect: function (e) {
+    e.preventDefault();
+    let colRow = e.target.value;
+    colRow = colRow.split(',');
+    let columns = parseInt(colRow[0]);
+    let rows = parseInt(colRow[1]);
+    this.props.changeTileSize(this.props.position, columns, rows);
+  },
+
+  onSizeSubmit: function (e) {
+    e.preventDefault();
+    this.props.onTextSubmit();
   }
 
 

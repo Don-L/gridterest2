@@ -19749,7 +19749,8 @@
 	        logDragging: this.logDragging,
 	        logDragTarget: this.logDragTarget,
 	        swapPositions: this.swapPositions,
-	        userRequestsChangeTileSize: this.userRequestsChangeTileSize
+	        userRequestsChangeTileSize: this.userRequestsChangeTileSize,
+	        changeTileSize: this.changeTileSize
 	      })
 	    );
 	  },
@@ -19780,7 +19781,7 @@
 	      //tile already selected
 	      var tile = this.getTileForEdit(position);
 	      var tiles = this.removeTileForEdit(position);
-	      tile.style.outline = '';
+	      // tile.style.outline = '';
 	      tiles.push(tile);
 	      this.setState({ tiles: tiles });
 	      var newSelectedTiles = this.removeTileFromSelected(position);
@@ -19789,7 +19790,7 @@
 	    } else {
 	      var _tile = this.getTileForEdit(position); //tile not selected
 	      var _tiles = this.removeTileForEdit(position);
-	      _tile.style.outline = 'black 1px solid';
+	      // tile.style.outline = 'black 1px solid';
 	      _tiles.push(_tile);
 	      this.setState({ tiles: _tiles });
 	      var _newSelectedTiles = this.state.selectedTiles;
@@ -19911,7 +19912,8 @@
 	      editingContentType: null,
 	      editingColour: null,
 	      editingText: null,
-	      editingImage: null });
+	      editingImage: null,
+	      editingTileSize: null });
 	  },
 	
 	  getTileForEdit: function getTileForEdit(position) {
@@ -19951,6 +19953,27 @@
 	      return a - b;
 	    });
 	    return array;
+	  },
+	
+	  changeTileSize: function changeTileSize(position, columns, rows) {
+	    var tile = this.getTileForEdit(position);
+	    var newTiles = this.removeTileForEdit(position);
+	    var columnMarginMultiple = (columns - 1) * 2;
+	    var rowMarginMultiple = (rows - 1) * 2;
+	    var top = 0.38 * rows;
+	    tile.content.style.backgroundColor = 'inherit';
+	    tile.content.style.width = 'calc(((95vw / 5) * ' + columns + ') + (0.38vw * ' + columnMarginMultiple + '))';
+	    tile.content.style.height = 'calc(((1520vw / 50) * ' + rows + ') + (0.38vw * ' + rowMarginMultiple + '))';
+	    tile.content.style.position = 'absolute';
+	    tile.content.style.zIndex = 1;
+	    tile.content.style.pointerEvents = 'none';
+	    tile.content.style.borderRadius = '3px';
+	    tile.content.style.overflow = 'hidden';
+	    tile.content.style.display = 'inline-block';
+	    tile.content.style.top = top + 'vw';
+	
+	    newTiles.push(tile);
+	    this.setState({ tiles: newTiles });
 	  }
 	
 	});
@@ -20001,7 +20024,7 @@
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage,
 	        editingTileSize: this.props.editingTileSize
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _defineProperty(_React$createElement, 'userRequestsChangeTileSize', this.props.userRequestsChangeTileSize), _React$createElement));
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _defineProperty(_React$createElement, 'userRequestsChangeTileSize', this.props.userRequestsChangeTileSize), _defineProperty(_React$createElement, 'changeTileSize', this.props.changeTileSize), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -20087,7 +20110,8 @@
 	        changeTileColour: this.props.changeTileColour,
 	        userRequestsAddImage: this.props.userRequestsAddImage,
 	        changeImageURL: this.props.changeImageURL,
-	        userRequestsChangeTileSize: this.props.userRequestsChangeTileSize
+	        userRequestsChangeTileSize: this.props.userRequestsChangeTileSize,
+	        changeTileSize: this.props.changeTileSize
 	      })
 	    );
 	  },
@@ -20232,18 +20256,18 @@
 	          triplet[1]
 	        );
 	      });
-	
 	      return React.createElement(
 	        'div',
 	        null,
 	        React.createElement(
 	          'form',
-	          null,
+	          { onSubmit: this.onSizeSubmit },
 	          React.createElement(
 	            'select',
-	            null,
+	            { onChange: this.onSizeSelect },
 	            options
-	          )
+	          ),
+	          React.createElement('input', { type: 'submit' })
 	        )
 	      );
 	    }
@@ -20281,11 +20305,24 @@
 	
 	  onColourSelect: function onColourSelect(e) {
 	    e.preventDefault();
-	    console.log(e.target.value);
 	    this.props.changeTileColour(this.props.position, e.target.value);
 	  },
 	
 	  onColourSubmit: function onColourSubmit(e) {
+	    e.preventDefault();
+	    this.props.onTextSubmit();
+	  },
+	
+	  onSizeSelect: function onSizeSelect(e) {
+	    e.preventDefault();
+	    var colRow = e.target.value;
+	    colRow = colRow.split(',');
+	    var columns = parseInt(colRow[0]);
+	    var rows = parseInt(colRow[1]);
+	    this.props.changeTileSize(this.props.position, columns, rows);
+	  },
+	
+	  onSizeSubmit: function onSizeSubmit(e) {
 	    e.preventDefault();
 	    this.props.onTextSubmit();
 	  }
@@ -20529,16 +20566,17 @@
 	module.exports = [{ position: 1,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
+	    // height: 'calc (95vw / 5)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
 	    margin: '0.38vw',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
 	    alignContent: 'center',
-	    zIndex: 0,
-	    outline: ''
+	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20554,7 +20592,7 @@
 	}, { position: 2,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20563,6 +20601,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20578,7 +20617,7 @@
 	}, { position: 3,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20587,6 +20626,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20602,7 +20642,7 @@
 	}, { position: 4,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20611,6 +20651,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20626,7 +20667,7 @@
 	}, { position: 5,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20635,6 +20676,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20650,7 +20692,7 @@
 	}, { position: 6,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20659,6 +20701,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20674,7 +20717,7 @@
 	}, { position: 7,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20683,6 +20726,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20698,7 +20742,7 @@
 	}, { position: 8,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20707,6 +20751,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20722,7 +20767,7 @@
 	}, { position: 9,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20731,6 +20776,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20746,7 +20792,7 @@
 	}, { position: 10,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20755,6 +20801,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20770,7 +20817,7 @@
 	}, { position: 11,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20779,6 +20826,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20794,7 +20842,7 @@
 	}, { position: 12,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20803,6 +20851,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20818,7 +20867,7 @@
 	}, { position: 13,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20827,6 +20876,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20842,7 +20892,7 @@
 	}, { position: 14,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20851,6 +20901,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20866,7 +20917,7 @@
 	}, { position: 15,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20875,6 +20926,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20890,7 +20942,7 @@
 	}, { position: 16,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20899,6 +20951,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20914,7 +20967,7 @@
 	}, { position: 17,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20923,6 +20976,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20938,7 +20992,7 @@
 	}, { position: 18,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20947,6 +21001,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20962,7 +21017,7 @@
 	}, { position: 19,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20971,6 +21026,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',
@@ -20986,7 +21042,7 @@
 	}, { position: 20,
 	  style: {
 	    width: 'calc(95vw / 5)',
-	    maxWidth: 'calc(95vw / 5)',
+	    // maxWidth: 'calc(95vw / 5)',
 	    height: 'calc(1520vw / 50)',
 	    backgroundColor: '#98c377',
 	    display: 'inline-block',
@@ -20995,6 +21051,7 @@
 	    overflow: 'hidden',
 	    alignContent: 'center',
 	    zIndex: 0
+	
 	  },
 	  content: {
 	    text: '',

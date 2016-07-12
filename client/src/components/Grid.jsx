@@ -42,6 +42,7 @@ const Grid = React.createClass({
                    logDragTarget={this.props.logDragTarget}
                    swapPositions={this.props.swapPositions}
                    userRequestsChangeTileSize={this.props.userRequestsChangeTileSize}
+                   changeTileSize={this.props.changeTileSize}
               />;
           }.bind(this));
 

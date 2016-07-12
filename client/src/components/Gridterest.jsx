@@ -54,6 +54,7 @@ const Gridterest = React.createClass({
               logDragTarget={this.logDragTarget}
               swapPositions={this.swapPositions}
               userRequestsChangeTileSize={this.userRequestsChangeTileSize}
+              changeTileSize={this.changeTileSize}
         />
       </div>
     );
@@ -85,7 +86,7 @@ const Gridterest = React.createClass({
     if (this.checkTileInSelected(position)) { //tile already selected
       let tile = this.getTileForEdit(position);
       let tiles = this.removeTileForEdit(position);
-      tile.style.outline = '';
+      // tile.style.outline = '';
       tiles.push(tile);
       this.setState({ tiles: tiles });
       let newSelectedTiles = this.removeTileFromSelected(position);
@@ -94,7 +95,7 @@ const Gridterest = React.createClass({
     } else {
       let tile = this.getTileForEdit(position); //tile not selected
       let tiles = this.removeTileForEdit(position);
-      tile.style.outline = 'black 1px solid';
+      // tile.style.outline = 'black 1px solid';
       tiles.push(tile);
       this.setState({ tiles: tiles });
       let newSelectedTiles = this.state.selectedTiles;
@@ -197,7 +198,8 @@ const Gridterest = React.createClass({
                     editingContentType: null,
                     editingColour: null,
                     editingText: null,
-                    editingImage: null });
+                    editingImage: null,
+                    editingTileSize: null });
   },
 
   getTileForEdit: function (position) {
@@ -238,6 +240,27 @@ const Gridterest = React.createClass({
     }
   );
     return array;
+  },
+
+  changeTileSize: function (position, columns, rows) {
+    let tile = this.getTileForEdit(position);
+    let newTiles = this.removeTileForEdit(position);
+    let columnMarginMultiple = (columns - 1) * 2;
+    let rowMarginMultiple = (rows - 1) * 2;
+    let top = 0.38 * rows;
+    tile.content.style.backgroundColor = 'inherit';
+    tile.content.style.width = `calc(((95vw / 5) * ${columns}) + (0.38vw * ${columnMarginMultiple}))`;
+    tile.content.style.height = `calc(((1520vw / 50) * ${rows}) + (0.38vw * ${rowMarginMultiple}))`;
+    tile.content.style.position = 'absolute';
+    tile.content.style.zIndex = 1;
+    tile.content.style.pointerEvents = 'none';
+    tile.content.style.borderRadius = '3px';
+    tile.content.style.overflow = 'hidden';
+    tile.content.style.display = 'inline-block';
+    tile.content.style.top = `${top}vw`;
+
+    newTiles.push(tile);
+    this.setState({ tiles: newTiles });
   }
 
 });
