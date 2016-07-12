@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha /Users/user/Desktop/cx_3-4/week11/gridterest/gridterest/client/src/components/specs",
+    "test": "mocha /Users/user/Desktop/cx_3-4/week11/gridterest/gridterest2/client/src/components/specs",
     "start": "webpack -w"
   },
   "keywords": [],

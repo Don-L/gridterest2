@@ -141,11 +141,30 @@ describe('Gridfunc', function () {
       assert.equal(false, tiles4)
       var tiles5 = Gridfunc.validSelectionGroup([10, 12, 16, 29], gridSize);
       assert.equal(false, tiles5)
-      var tiles6 = Gridfunc.validSelectionGroup([22,23], gridSize);
+      var tiles6 = Gridfunc.validSelectionGroup([22, 23], gridSize);
       assert.equal(true, tiles6)
-      var tiles7 = Gridfunc.validSelectionGroup([10, 15,20], gridSize);
+      var tiles7 = Gridfunc.validSelectionGroup([10, 15, 20], gridSize);
       assert.equal(true, tiles7)
       var tiles8 = Gridfunc.validSelectionGroup([11,12,13,14], gridSize);
       assert.equal(true, tiles8)
   });
+  it('can find the position of the last tile in a row containing a selected tile and the number of free tiles in that row to the right of the selected tile, including the selected tile', function () {
+    var position = 3;
+    var columns = 5;
+    var lastTileAndTilesLeft = Gridfunc.freeTilesInRow(position, columns)
+    assert.equal(5, lastTileAndTilesLeft[0]);
+    assert.equal(3, lastTileAndTilesLeft[1]);
+  });
+  it('can find the the number of free tiles in the column beneath a selected tile, including the selected tile', function () {
+    var position = 13;
+    var columns = 5;
+    var tiles = 20;
+    var lastTileAndTilesLeft = Gridfunc.freeTilesInColumn(position, columns, tiles)
+    assert.equal(2, lastTileAndTilesLeft);
+    var position2 = 1;
+    var columns2 = 5;
+    var tiles2 = 20;
+    var lastTileAndTilesLeft2 = Gridfunc.freeTilesInColumn(position2, columns2, tiles2)
+    assert.equal(4, lastTileAndTilesLeft2);
+  })
 });

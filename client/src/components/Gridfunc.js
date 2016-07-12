@@ -101,6 +101,32 @@ const Gridfunc = {
     ) {
       return true;
     } else return false;
+  },
+
+//returns [lst tile in row, number of free tiles in row]
+  freeTilesInRow: function (position, columns) {
+    if (position % columns === 0) {
+      return [position, 1];
+    } else {
+      var i = 0;
+      while (i < columns) {
+        var lastTile = position + i;
+        if (lastTile % columns === 0) {
+          break;
+        }
+        i++;
+      }
+    } return [lastTile, i + 1];
+  },
+
+  freeTilesInColumn: function (position, columns, tiles) {
+    var lastInRow = this.freeTilesInRow(position, columns);
+    var lastInRow = lastInRow[0];
+    if (lastInRow === tiles) {
+      return 1;
+    } else {
+      return 1 + ((tiles - lastInRow) / columns);
+    }
   }
 
 };

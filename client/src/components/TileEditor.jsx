@@ -10,6 +10,7 @@ const TileEditor = React.createClass({
                    <option>Add/edit text</option>
                    <option>Change tile colour</option>
                    <option>Add image</option>
+                   <option>Change tile size</option>
                  </select>
                  <textarea value={this.props.content.text}
                            onChange={this.changeTileText}
@@ -30,7 +31,6 @@ const TileEditor = React.createClass({
               </form>
             </div>;
     } else if (this.props.editingImage) { //editing image
-      console.log('editing image')
       return <div>
                <form onSubmit={this.onImageSubmit}>
                  <input type='text'
@@ -43,6 +43,8 @@ const TileEditor = React.createClass({
                  <input type='submit'></input>
                </form>
              </div>;
+    } else if (this.props.editingGroupSize) {
+      
     }
   },
 

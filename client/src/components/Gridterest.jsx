@@ -10,12 +10,14 @@ const Gridterest = React.createClass({
     return (
       {
         tiles: [],
+        columns: 5,
         selectedTiles: [],
         editing: null,
         editingContentType: null,
         editingColour: null,
         editingText: null,
         editingImage: null,
+        editingGroupSize: null,
         dragging: null,
         dragTarget: null
       }
@@ -32,12 +34,14 @@ const Gridterest = React.createClass({
       <div>
         <Nav/>
         <Grid tiles={this.state.tiles}
+              columns={this.state.columns}
               selectedTiles={this.state.selectedTiles}
               editing={this.state.editing}
               editingContentType={this.state.editingContentType}
               editingColour={this.state.editingColour}
               editingText={this.state.editingText}
               editingImage={this.state.editingImage}
+              editingGroupSize={this.state.editingGroupSize}
               userRequestsEdit={this.userRequestsEdit}
               onTextSubmit={this.onTextSubmit}
               changeTileText={this.changeTileText}

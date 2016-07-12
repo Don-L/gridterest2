@@ -19706,12 +19706,14 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      tiles: [],
+	      columns: 5,
 	      selectedTiles: [],
 	      editing: null,
 	      editingContentType: null,
 	      editingColour: null,
 	      editingText: null,
 	      editingImage: null,
+	      editingGroupSize: null,
 	      dragging: null,
 	      dragTarget: null
 	    };
@@ -19728,12 +19730,14 @@
 	      null,
 	      React.createElement(Nav, null),
 	      React.createElement(Grid, { tiles: this.state.tiles,
+	        columns: this.state.columns,
 	        selectedTiles: this.state.selectedTiles,
 	        editing: this.state.editing,
 	        editingContentType: this.state.editingContentType,
 	        editingColour: this.state.editingColour,
 	        editingText: this.state.editingText,
 	        editingImage: this.state.editingImage,
+	        editingGroupSize: this.state.editingGroupSize,
 	        userRequestsEdit: this.userRequestsEdit,
 	        onTextSubmit: this.onTextSubmit,
 	        changeTileText: this.changeTileText,
@@ -19981,6 +19985,7 @@
 	
 	      return React.createElement(Tile, (_React$createElement = { key: tile.position,
 	        position: tile.position,
+	        columns: this.props.columns,
 	        editing: this.props.editing,
 	        style: tile.style,
 	        content: tile.content,
@@ -19988,7 +19993,8 @@
 	        editingContentType: this.props.editingContentType,
 	        editingColour: this.props.editingColour,
 	        editingText: this.props.editingText,
-	        editingImage: this.props.editingImage
+	        editingImage: this.props.editingImage,
+	        editingGroupSize: this.props.editingGroupSize
 	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _React$createElement));
 	    }.bind(this));
 	
@@ -20061,8 +20067,10 @@
 	      },
 	      React.createElement(TileEditor, { editingContentType: this.props.editingContentType,
 	        editingColour: this.props.editingColour,
+	        columns: this.props.columns,
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage,
+	        editingGroupSize: this.props.editingGroupSize,
 	        userRequestsEdit: this.userRequestsEdit,
 	        position: this.props.position,
 	        onTextSubmit: this.props.onTextSubmit,
@@ -20140,6 +20148,11 @@
 	              'option',
 	              null,
 	              'Add image'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Change tile size'
 	            )
 	          ),
 	          React.createElement('textarea', { value: this.props.content.text,
@@ -20185,7 +20198,6 @@
 	      );
 	    } else if (this.props.editingImage) {
 	      //editing image
-	      console.log('editing image');
 	      return React.createElement(
 	        'div',
 	        null,
@@ -20201,7 +20213,7 @@
 	          React.createElement('input', { type: 'submit' })
 	        )
 	      );
-	    }
+	    } else if (this.props.editingGroupSize) {}
 	  },
 	
 	  changeTileText: function changeTileText(e) {
@@ -20336,6 +20348,32 @@
 	    if (this.singleTile(array) || this.twoAdjacentTiles(array, gridSize) || this.threeAdjacentTiles(array, gridSize) || this.fourAdjacentTiles(array, gridSize) || this.twoByTwoSquare(array, gridSize)) {
 	      return true;
 	    } else return false;
+	  },
+	
+	  //returns [lst tile in row, number of free tiles in row]
+	  freeTilesInRow: function freeTilesInRow(position, columns) {
+	    if (position % columns === 0) {
+	      return [position, 1];
+	    } else {
+	      var i = 0;
+	      while (i < columns) {
+	        var lastTile = position + i;
+	        if (lastTile % columns === 0) {
+	          break;
+	        }
+	        i++;
+	      }
+	    }return [lastTile, i + 1];
+	  },
+	
+	  freeTilesInColumn: function freeTilesInColumn(position, columns, tiles) {
+	    var lastInRow = this.freeTilesInRow(position, columns);
+	    var lastInRow = lastInRow[0];
+	    if (lastInRow === tiles) {
+	      return 1;
+	    } else {
+	      return 1 + (tiles - lastInRow) / columns;
+	    }
 	  }
 	
 	};
@@ -20391,7 +20429,7 @@
 	    outline: ''
 	  },
 	  content: {
-	    text: '<h1>Hello</h1><p>I am the content</p>',
+	    text: '',
 	    textLink: '',
 	    image: '',
 	    imageCaption: '',

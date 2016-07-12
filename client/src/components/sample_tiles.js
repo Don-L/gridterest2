@@ -15,7 +15,7 @@ module.exports = [
       outline: ''
     },
     content: {
-      text: '<h1>Hello</h1><p>I am the content</p>',
+      text: '',
       textLink: '',
       image: '',
       imageCaption: '',
