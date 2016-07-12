@@ -19959,18 +19959,20 @@
 	    var tile = this.getTileForEdit(position);
 	    var newTiles = this.removeTileForEdit(position);
 	    var columnMarginMultiple = (columns - 1) * 2;
-	    var rowMarginMultiple = (rows - 1) * 2;
-	    var top = 0.38 * rows;
+	    var rowMarginMultiple = rows * 2;
+	    // let tileRow = Gridfunc.findRow(position, 5, 20);
+	    // tileRow = tileRow - 1;
+	    // let top = (4 * rows) + (388 * tileRow);
 	    tile.content.style.backgroundColor = 'inherit';
-	    tile.content.style.width = 'calc(((95vw / 5) * ' + columns + ') + (0.38vw * ' + columnMarginMultiple + '))';
-	    tile.content.style.height = 'calc(((1520vw / 50) * ' + rows + ') + (0.38vw * ' + rowMarginMultiple + '))';
+	    tile.content.style.width = 'calc((245px * ' + columns + ') + (4px * ' + columnMarginMultiple + '))';
+	    tile.content.style.height = 'calc((245px * ' + rows + ') + (4px * ' + rowMarginMultiple + '))';
 	    tile.content.style.position = 'absolute';
 	    tile.content.style.zIndex = 1;
 	    tile.content.style.pointerEvents = 'none';
 	    tile.content.style.borderRadius = '3px';
 	    tile.content.style.overflow = 'hidden';
 	    tile.content.style.display = 'inline-block';
-	    tile.content.style.top = top + 'vw';
+	    // tile.content.style.top = `${top}px`;
 	
 	    newTiles.push(tile);
 	    this.setState({ tiles: newTiles });
@@ -20523,6 +20525,12 @@
 	      return [pairs[i], strings[i]];
 	    });
 	    return array;
+	  },
+	
+	  findRow: function findRow(position, columns, tiles) {
+	    var rows = tiles / columns;
+	    var row = parseInt(position / rows + 1);
+	    return row;
 	  }
 	
 	};
@@ -20563,18 +20571,557 @@
 
 	'use strict';
 	
-	module.exports = [{ position: 1,
+	module.exports = [
+	
+	// { position: 1,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 2,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 3,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 4,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 5,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 6,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 7,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 8,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 9,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 10,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 11,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 12,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 13,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 14,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 15,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 16,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 17,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 18,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 19,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// },
+	//
+	// { position: 20,
+	//   style: {
+	//     width: 'calc(95vw / 5)',
+	//     // maxWidth: 'calc(95vw / 5)',
+	//     height: 'calc(1520vw / 50)',
+	//     backgroundColor: '#98c377',
+	//     display: 'inline-block',
+	//     margin: '0.38vw',
+	//     borderRadius: '3px',
+	//     overflow: 'hidden',
+	//   // alignContent: 'center',
+	//     zIndex: 0
+	//
+	//   },
+	//   content: {
+	//     text: '',
+	//     textLink: '',
+	//     image: '',
+	//     imageCaption: '',
+	//     imageLink: '',
+	//     style: {
+	//       backgroundColor: '',
+	//       width: '100%'
+	//     }
+	//   }
+	// }
+	{ position: 1,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    // height: 'calc (95vw / 5)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20591,15 +21138,15 @@
 	  }
 	}, { position: 2,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20616,15 +21163,15 @@
 	  }
 	}, { position: 3,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20641,15 +21188,15 @@
 	  }
 	}, { position: 4,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20666,15 +21213,15 @@
 	  }
 	}, { position: 5,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20691,15 +21238,15 @@
 	  }
 	}, { position: 6,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20716,15 +21263,15 @@
 	  }
 	}, { position: 7,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20741,15 +21288,15 @@
 	  }
 	}, { position: 8,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20766,15 +21313,15 @@
 	  }
 	}, { position: 9,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20791,15 +21338,15 @@
 	  }
 	}, { position: 10,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20816,15 +21363,15 @@
 	  }
 	}, { position: 11,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20841,15 +21388,15 @@
 	  }
 	}, { position: 12,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20866,15 +21413,15 @@
 	  }
 	}, { position: 13,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20891,15 +21438,15 @@
 	  }
 	}, { position: 14,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20916,15 +21463,15 @@
 	  }
 	}, { position: 15,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20941,15 +21488,15 @@
 	  }
 	}, { position: 16,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20966,15 +21513,15 @@
 	  }
 	}, { position: 17,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -20991,15 +21538,15 @@
 	  }
 	}, { position: 18,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -21016,15 +21563,15 @@
 	  }
 	}, { position: 19,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },
@@ -21041,15 +21588,15 @@
 	  }
 	}, { position: 20,
 	  style: {
-	    width: 'calc(95vw / 5)',
-	    // maxWidth: 'calc(95vw / 5)',
-	    height: 'calc(1520vw / 50)',
-	    backgroundColor: '#98c377',
+	    width: '245px',
+	    height: '245px',
+	    // backgroundColor: '#98c377',
+	    backgroundColor: 'black',
 	    display: 'inline-block',
-	    margin: '0.38vw',
+	    margin: '4px',
 	    borderRadius: '3px',
 	    overflow: 'hidden',
-	    alignContent: 'center',
+	    // alignContent: 'center',
 	    zIndex: 0
 	
 	  },

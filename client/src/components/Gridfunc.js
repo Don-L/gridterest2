@@ -161,6 +161,12 @@ const Gridfunc = {
       return [pairs[i], strings[i]];
     });
     return array;
+  },
+
+  findRow: function (position, columns, tiles) {
+    var rows = tiles / columns;
+    var row = parseInt((position / rows) + 1);
+    return row;
   }
 
 };

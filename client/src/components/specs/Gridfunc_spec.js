@@ -188,5 +188,12 @@ describe('Gridfunc', function () {
     var tiles = 20;
     var triplets = Gridfunc.makeArrayOfPairsAndStrings(position, columns, tiles);
     console.log(triplets);
+  });
+  it('knows which row a given position is in', function () {
+    var position = 7;
+    var columns = 5;
+    var tiles = 20;
+    var row = Gridfunc.findRow(position, columns, tiles);
+    assert.equal(2, row);
   })
 });

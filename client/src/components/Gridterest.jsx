@@ -246,18 +246,20 @@ const Gridterest = React.createClass({
     let tile = this.getTileForEdit(position);
     let newTiles = this.removeTileForEdit(position);
     let columnMarginMultiple = (columns - 1) * 2;
-    let rowMarginMultiple = (rows - 1) * 2;
-    let top = 0.38 * rows;
+    let rowMarginMultiple = (rows) * 2;
+    // let tileRow = Gridfunc.findRow(position, 5, 20);
+    // tileRow = tileRow - 1;
+    // let top = (4 * rows) + (388 * tileRow);
     tile.content.style.backgroundColor = 'inherit';
-    tile.content.style.width = `calc(((95vw / 5) * ${columns}) + (0.38vw * ${columnMarginMultiple}))`;
-    tile.content.style.height = `calc(((1520vw / 50) * ${rows}) + (0.38vw * ${rowMarginMultiple}))`;
+    tile.content.style.width = `calc((245px * ${columns}) + (4px * ${columnMarginMultiple}))`;
+    tile.content.style.height = `calc((245px * ${rows}) + (4px * ${rowMarginMultiple}))`;
     tile.content.style.position = 'absolute';
     tile.content.style.zIndex = 1;
     tile.content.style.pointerEvents = 'none';
     tile.content.style.borderRadius = '3px';
     tile.content.style.overflow = 'hidden';
     tile.content.style.display = 'inline-block';
-    tile.content.style.top = `${top}vw`;
+    // tile.content.style.top = `${top}px`;
 
     newTiles.push(tile);
     this.setState({ tiles: newTiles });
