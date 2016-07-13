@@ -20077,8 +20077,8 @@
 	    var columnMarginMultiple = (columns - 1) * 2;
 	    var rowMarginMultiple = (rows - 1) * 2;
 	    tile.content.style.backgroundColor = 'inherit';
-	    tile.content.style.width = 'calc((250px * ' + columns + ') + (3px * ' + columnMarginMultiple + '))';
-	    tile.content.style.height = 'calc((350px * ' + rows + ') + (3px * ' + rowMarginMultiple + '))';
+	    tile.content.style.width = 'calc((' + this.state.tileWidth + ' * ' + columns + ') + (3px * ' + columnMarginMultiple + '))';
+	    tile.content.style.height = 'calc((' + this.state.tileHeight + ' * ' + rows + ') + (3px * ' + rowMarginMultiple + '))';
 	    tile.content.style.position = 'absolute';
 	    tile.content.style.zIndex = 1;
 	    tile.content.style.pointerEvents = 'none';
@@ -20312,7 +20312,7 @@
 	      //colour edit
 	      return React.createElement(
 	        'div',
-	        null,
+	        { className: 'select-div' },
 	        React.createElement(
 	          'form',
 	          { onSubmit: this.onColourSubmit },
@@ -20347,7 +20347,7 @@
 	      //editing image
 	      return React.createElement(
 	        'div',
-	        null,
+	        { className: 'select-div' },
 	        React.createElement(
 	          'form',
 	          { onSubmit: this.onImageSubmit },
@@ -20372,7 +20372,7 @@
 	      });
 	      return React.createElement(
 	        'div',
-	        null,
+	        { className: 'select-div' },
 	        React.createElement(
 	          'form',
 	          { onSubmit: this.onSizeSubmit },
@@ -21823,8 +21823,8 @@
 	    if (this.props.content.image) {
 	      return React.createElement(
 	        'div',
-	        null,
-	        React.createElement('img', { src: this.props.content.image, style: this.props.content.style })
+	        { objectFit: 'contain', height: '100%' },
+	        React.createElement('img', { src: this.props.content.image, height: '100%' })
 	      );
 	    } else {
 	      var markUp = function () {

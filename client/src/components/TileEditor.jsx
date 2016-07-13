@@ -20,7 +20,7 @@ const TileEditor = React.createClass({
                </form>
              </div>;
     } else if (this.props.editingColour) { //colour edit
-      return <div>
+      return <div className='select-div'>
               <form onSubmit={this.onColourSubmit}>
                 <select onChange={this.onColourSelect}>
                   <option>Yellow</option>
@@ -32,7 +32,7 @@ const TileEditor = React.createClass({
               </form>
             </div>;
     } else if (this.props.editingImage) { //editing image
-      return <div>
+      return <div className='select-div'>
                <form onSubmit={this.onImageSubmit}>
                  <input type='text'
                         placeholder='IMAGE URL'
@@ -49,7 +49,7 @@ const TileEditor = React.createClass({
       let options = pairsAndStrings.map(function (triplet) {
         return <option key={triplet[1]} value={triplet[0]}>{triplet[1]}</option>;
       });
-      return <div>
+      return <div className='select-div'>
                <form onSubmit={this.onSizeSubmit}>
                  <select onChange={this.onSizeSelect}>
                    {options}
