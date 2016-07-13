@@ -19708,6 +19708,7 @@
 	      tiles: [],
 	      columns: 5,
 	      selectedTiles: [],
+	      usingNav: null,
 	      editing: null,
 	      editingContentType: null,
 	      editingColour: null,
@@ -19728,7 +19729,10 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Nav, null),
+	      React.createElement(Nav, { usingNav: this.state.usingNav,
+	        setUsingNav: this.setUsingNav,
+	        onNavSelect: this.onNavSelect
+	      }),
 	      React.createElement(Grid, { tiles: this.state.tiles,
 	        columns: this.state.columns,
 	        selectedTiles: this.state.selectedTiles,
@@ -19753,6 +19757,19 @@
 	        changeTileSize: this.changeTileSize
 	      })
 	    );
+	  },
+	
+	  setUsingNav: function setUsingNav() {
+	    if (this.state.usingNav) {
+	      this.setState({ usingNav: null });
+	    } else this.setState({ usingNav: true });
+	  },
+	
+	  onNavSelect: function onNavSelect(e) {
+	    if (e.target.value = 'Add more tiles') {
+	      console.log(e.target.value);
+	      this.setUsingNav();
+	    } else this.setUsingNav();
 	  },
 	
 	  logDragging: function logDragging(position) {
@@ -20545,9 +20562,45 @@
 	
 	
 	  render: function render() {
-	    return React.createElement(
+	    if (this.props.usingNav === true) {
+	      return React.createElement(
+	        'div',
+	        { className: 'nav-div',
+	          onDoubleClick: this.props.setUsingNav
+	        },
+	        React.createElement(
+	          'h3',
+	          null,
+	          'gridterest'
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          React.createElement(
+	            'form',
+	            null,
+	            React.createElement(
+	              'select',
+	              { onChange: this.props.onNavSelect },
+	              React.createElement(
+	                'option',
+	                null,
+	                'what do you want?'
+	              ),
+	              React.createElement(
+	                'option',
+	                null,
+	                'Add more tiles'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    } else return React.createElement(
 	      'div',
-	      { className: 'nav-div' },
+	      { className: 'nav-div',
+	        onDoubleClick: this.props.setUsingNav
+	      },
 	      React.createElement(
 	        'h3',
 	        null,

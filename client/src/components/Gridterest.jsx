@@ -12,6 +12,7 @@ const Gridterest = React.createClass({
         tiles: [],
         columns: 5,
         selectedTiles: [],
+        usingNav: null,
         editing: null,
         editingContentType: null,
         editingColour: null,
@@ -32,7 +33,10 @@ const Gridterest = React.createClass({
   render: function () {
     return (
       <div>
-        <Nav/>
+        <Nav usingNav={this.state.usingNav}
+             setUsingNav={this.setUsingNav}
+             onNavSelect={this.onNavSelect}
+        />
         <Grid tiles={this.state.tiles}
               columns={this.state.columns}
               selectedTiles={this.state.selectedTiles}
@@ -58,6 +62,19 @@ const Gridterest = React.createClass({
         />
       </div>
     );
+  },
+
+  setUsingNav: function () {
+    if (this.state.usingNav) {
+      this.setState({ usingNav: null });
+    } else this.setState({ usingNav: true });
+  },
+
+  onNavSelect: function (e) {
+    if (e.target.value = 'Add more tiles') {
+      console.log(e.target.value);
+      this.setUsingNav();
+    } else this.setUsingNav();
   },
 
   logDragging: function (position) {
