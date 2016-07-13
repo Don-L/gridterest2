@@ -20744,7 +20744,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 2,
@@ -20770,7 +20771,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 3,
@@ -20796,7 +20798,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 4,
@@ -20822,7 +20825,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 5,
@@ -20848,7 +20852,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 6,
@@ -20874,7 +20879,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 7,
@@ -20900,7 +20906,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 8,
@@ -20926,7 +20933,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 9,
@@ -20952,7 +20960,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 10,
@@ -20978,7 +20987,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 11,
@@ -21004,7 +21014,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 12,
@@ -21030,7 +21041,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 13,
@@ -21056,7 +21068,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 14,
@@ -21082,7 +21095,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 15,
@@ -21108,7 +21122,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 16,
@@ -21134,7 +21149,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 17,
@@ -21160,7 +21176,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 18,
@@ -21186,7 +21203,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 19,
@@ -21212,7 +21230,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}, { position: 20,
@@ -21238,7 +21257,8 @@
 	    imageLink: '',
 	    style: {
 	      backgroundColor: '',
-	      width: '100%'
+	      width: '100%',
+	      margin: '0 auto'
 	    }
 	  }
 	}
