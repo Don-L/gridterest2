@@ -10,7 +10,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -38,7 +38,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -66,7 +66,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -94,7 +94,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -122,7 +122,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -150,7 +150,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -178,7 +178,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -206,7 +206,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -234,7 +234,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -262,7 +262,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -290,7 +290,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -318,7 +318,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -346,7 +346,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -374,7 +374,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -402,7 +402,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -430,7 +430,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -458,7 +458,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -486,7 +486,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -514,7 +514,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },
@@ -542,7 +542,7 @@ module.exports = [
       marginBottom: '-1px',
       borderRadius: '3px',
       overflow: 'hidden',
-    alignContent: 'center',
+      alignContent: 'center',
       zIndex: 0
 
     },

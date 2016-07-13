@@ -5,7 +5,7 @@ const TileEditor = React.createClass({
 
   render: function () {
     if (this.props.editingContentType) { //initial select
-      return <div>
+      return <div className='select-div'>
                <form onSubmit={this.onTextSubmit}>
                  <select onChange={this.onInitialSelect}>
                    <option>Add/edit text</option>
@@ -15,7 +15,7 @@ const TileEditor = React.createClass({
                  </select>
                  <textarea value={this.props.content.text}
                            onChange={this.changeTileText}
-                 />
+                 /><br/>
                  <input type='Submit'/>
                </form>
              </div>;

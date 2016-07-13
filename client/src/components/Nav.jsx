@@ -13,6 +13,7 @@ const Nav = React.createClass({
                    <select onChange={this.props.onNavSelect}>
                      <option>what do you want?</option>
                      <option>Add more tiles</option>
+                     <option>Switch grid type</option>
                    </select>
                  </form>
                </div>

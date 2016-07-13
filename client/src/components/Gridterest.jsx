@@ -12,6 +12,10 @@ const Gridterest = React.createClass({
       {
         tiles: [],
         columns: 5,
+        tileWidth: null,
+        tileHeight: null,
+        tileMargin: null,
+        tileMarginBottom: null,
         selectedTiles: [],
         usingNav: null,
         editing: null,
@@ -28,7 +32,16 @@ const Gridterest = React.createClass({
 
   componentDidMount: function () {
     let tiles = SampleTiles;
-    this.setState({ tiles: SampleTiles });
+    let width = tiles[0].style.width;
+    let height = tiles[0].style.height;
+    let margin = tiles[0].style.margin;
+    let marginBottom = tiles[0].style.marginBottom;
+    this.setState({ tiles: SampleTiles,
+                    tileWidth: width,
+                    tileHeight: height,
+                    tileMargin: margin,
+                    tileMarginBottom: marginBottom
+                 })
   },
 
   render: function () {
@@ -72,10 +85,90 @@ const Gridterest = React.createClass({
   },
 
   onNavSelect: function (e) {
-    if (e.target.value = 'Add more tiles') {
+    if (e.target.value === 'Add more tiles') {
       this.setUsingNav();
-      this.addTiles(this.state.tiles.length + 1, '250px', '350px', '3px', '-1px');
+      this.addTiles(this.state.tiles.length + 1, this.state.tileWidth, this.state.tileHeight, this.state.tileMargin, this.state.tileMarginBottom);
+    } else if (e.target.value === 'Switch grid type') {
+        this.setUsingNav();
+        this.switchGrid();
     } else this.setUsingNav();
+  },
+
+  switchGrid: function (e) {
+    let newTiles = this.state.tiles;
+    if (this.state.tileWidth === '250px') {
+      newTiles = newTiles.map(function (tile) {
+        return (
+                { position: tile.position,
+                  style: {
+                    width: '100px',
+                    height: '60px',
+                    backgroundColor: '#98c377',
+                    display: 'inline-block',
+                    margin: '3px',
+                    marginBottom: '-1px',
+                    borderRadius: '3px',
+                    overflow: 'hidden',
+                    alignContent: 'center',
+                    zIndex: 0
+
+                  },
+                  content: {
+                    text: tile.content.text,
+                    textLink: tile.content.textLink,
+                    image: tile.content.image,
+                    imageCaption: tile.content.imageCaption,
+                    imageLink: tile.content.imageLink,
+                    style: {
+                      backgroundColor: tile.content.style.backgroundColor,
+                      width: tile.content.style.width
+                    }
+                  }
+                }
+               );
+      });
+      this.setState({ tiles: newTiles,
+                      tileWidth: '100px',
+                      tileHeight: '60px',
+                      columns: 12
+                    })
+    } else {
+      newTiles = newTiles.map(function (tile) {
+        return (
+                { position: tile.position,
+                  style: {
+                    width: '250px',
+                    height: '350px',
+                    backgroundColor: '#98c377',
+                    display: 'inline-block',
+                    margin: '3px',
+                    marginBottom: '-1px',
+                    borderRadius: '3px',
+                    overflow: 'hidden',
+                    alignContent: 'center',
+                    zIndex: 0
+
+                  },
+                  content: {
+                    text: tile.content.text,
+                    textLink: tile.content.textLink,
+                    image: tile.content.image,
+                    imageCaption: tile.content.imageCaption,
+                    imageLink: tile.content.imageLink,
+                    style: {
+                      backgroundColor: tile.content.style.backgroundColor,
+                      width: tile.content.style.width
+                    }
+                  }
+                }
+      );
+    });
+    this.setState({ tiles: newTiles,
+                    tileWidth: '250px',
+                    tileHeight: '350px',
+                    columns: 5
+                  })
+    }
   },
 
   addTiles: function (tilePosition, tileWidth, tileHeight, tileMargin, tileMarginBottom) {
