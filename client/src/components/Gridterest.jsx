@@ -103,7 +103,7 @@ const Gridterest = React.createClass({
                   style: {
                     width: '100px',
                     height: '100px',
-                    backgroundColor: '#98c377',
+                    backgroundColor: '#f6faf3',
                     display: 'inline-block',
                     margin: '3px',
                     marginBottom: '-1px',
@@ -140,7 +140,7 @@ const Gridterest = React.createClass({
                   style: {
                     width: '250px',
                     height: '350px',
-                    backgroundColor: '#98c377',
+                    backgroundColor: '#f6faf3',
                     display: 'inline-block',
                     margin: '3px',
                     marginBottom: '-1px',
