@@ -246,21 +246,16 @@ const Gridterest = React.createClass({
     let tile = this.getTileForEdit(position);
     let newTiles = this.removeTileForEdit(position);
     let columnMarginMultiple = (columns - 1) * 2;
-    let rowMarginMultiple = (rows) * 2;
-    // let tileRow = Gridfunc.findRow(position, 5, 20);
-    // tileRow = tileRow - 1;
-    // let top = (4 * rows) + (388 * tileRow);
+    let rowMarginMultiple = (rows - 1) * 2;
     tile.content.style.backgroundColor = 'inherit';
-    tile.content.style.width = `calc((245px * ${columns}) + (4px * ${columnMarginMultiple}))`;
-    tile.content.style.height = `calc((245px * ${rows}) + (4px * ${rowMarginMultiple}))`;
+    tile.content.style.width = `calc((250px * ${columns}) + (3px * ${columnMarginMultiple}))`;
+    tile.content.style.height = `calc((350px * ${rows}) + (3px * ${rowMarginMultiple}))`;
     tile.content.style.position = 'absolute';
     tile.content.style.zIndex = 1;
     tile.content.style.pointerEvents = 'none';
     tile.content.style.borderRadius = '3px';
     tile.content.style.overflow = 'hidden';
     tile.content.style.display = 'inline-block';
-    // tile.content.style.top = `${top}px`;
-
     newTiles.push(tile);
     this.setState({ tiles: newTiles });
   }

@@ -19959,21 +19959,16 @@
 	    var tile = this.getTileForEdit(position);
 	    var newTiles = this.removeTileForEdit(position);
 	    var columnMarginMultiple = (columns - 1) * 2;
-	    var rowMarginMultiple = rows * 2;
-	    // let tileRow = Gridfunc.findRow(position, 5, 20);
-	    // tileRow = tileRow - 1;
-	    // let top = (4 * rows) + (388 * tileRow);
+	    var rowMarginMultiple = (rows - 1) * 2;
 	    tile.content.style.backgroundColor = 'inherit';
-	    tile.content.style.width = 'calc((245px * ' + columns + ') + (4px * ' + columnMarginMultiple + '))';
-	    tile.content.style.height = 'calc((245px * ' + rows + ') + (4px * ' + rowMarginMultiple + '))';
+	    tile.content.style.width = 'calc((250px * ' + columns + ') + (3px * ' + columnMarginMultiple + '))';
+	    tile.content.style.height = 'calc((350px * ' + rows + ') + (3px * ' + rowMarginMultiple + '))';
 	    tile.content.style.position = 'absolute';
 	    tile.content.style.zIndex = 1;
 	    tile.content.style.pointerEvents = 'none';
 	    tile.content.style.borderRadius = '3px';
 	    tile.content.style.overflow = 'hidden';
 	    tile.content.style.display = 'inline-block';
-	    // tile.content.style.top = `${top}px`;
-	
 	    newTiles.push(tile);
 	    this.setState({ tiles: newTiles });
 	  }
@@ -20571,18 +20566,537 @@
 
 	'use strict';
 	
-	module.exports = [
+	module.exports = [{ position: 1,
+	  style: {
+	    width: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
 	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 2,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 3,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 4,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 5,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 6,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 7,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 8,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 9,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 10,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 11,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 12,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 13,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 14,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 15,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 16,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 17,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 18,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 19,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}, { position: 20,
+	  style: {
+	    width: '250px',
+	    // maxwidth: '250px',
+	    height: '350px',
+	    backgroundColor: '#98c377',
+	    display: 'inline-block',
+	    margin: '3px',
+	    marginBottom: '-1px',
+	    borderRadius: '3px',
+	    overflow: 'hidden',
+	    alignContent: 'center',
+	    zIndex: 0
+	
+	  },
+	  content: {
+	    text: '',
+	    textLink: '',
+	    image: '',
+	    imageCaption: '',
+	    imageLink: '',
+	    style: {
+	      backgroundColor: '',
+	      width: '100%'
+	    }
+	  }
+	}
 	// { position: 1,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20601,15 +21115,15 @@
 	//
 	// { position: 2,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20628,15 +21142,15 @@
 	//
 	// { position: 3,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20655,15 +21169,15 @@
 	//
 	// { position: 4,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20682,15 +21196,15 @@
 	//
 	// { position: 5,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20709,15 +21223,15 @@
 	//
 	// { position: 6,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20736,15 +21250,15 @@
 	//
 	// { position: 7,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20763,15 +21277,15 @@
 	//
 	// { position: 8,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20790,15 +21304,15 @@
 	//
 	// { position: 9,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20817,15 +21331,15 @@
 	//
 	// { position: 10,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20844,15 +21358,15 @@
 	//
 	// { position: 11,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20871,15 +21385,15 @@
 	//
 	// { position: 12,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20898,15 +21412,15 @@
 	//
 	// { position: 13,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20925,15 +21439,15 @@
 	//
 	// { position: 14,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20952,15 +21466,15 @@
 	//
 	// { position: 15,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -20979,15 +21493,15 @@
 	//
 	// { position: 16,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -21006,15 +21520,15 @@
 	//
 	// { position: 17,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -21033,15 +21547,15 @@
 	//
 	// { position: 18,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -21060,15 +21574,15 @@
 	//
 	// { position: 19,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -21087,15 +21601,15 @@
 	//
 	// { position: 20,
 	//   style: {
-	//     width: 'calc(95vw / 5)',
-	//     // maxWidth: 'calc(95vw / 5)',
-	//     height: 'calc(1520vw / 50)',
-	//     backgroundColor: '#98c377',
+	//     width: '250px',
+	//     height: '245px',
+	//     // backgroundColor: '#98c377',
+	//     backgroundColor: 'black',
 	//     display: 'inline-block',
-	//     margin: '0.38vw',
+	//     margin: '4px',
 	//     borderRadius: '3px',
 	//     overflow: 'hidden',
-	//   // alignContent: 'center',
+	//   alignContent: 'center',
 	//     zIndex: 0
 	//
 	//   },
@@ -21111,507 +21625,8 @@
 	//     }
 	//   }
 	// }
-	{ position: 1,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
 	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 2,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 3,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 4,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 5,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 6,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 7,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 8,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 9,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 10,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 11,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 12,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 13,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 14,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 15,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 16,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 17,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 18,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 19,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}, { position: 20,
-	  style: {
-	    width: '245px',
-	    height: '245px',
-	    // backgroundColor: '#98c377',
-	    backgroundColor: 'black',
-	    display: 'inline-block',
-	    margin: '4px',
-	    borderRadius: '3px',
-	    overflow: 'hidden',
-	    // alignContent: 'center',
-	    zIndex: 0
-	
-	  },
-	  content: {
-	    text: '',
-	    textLink: '',
-	    image: '',
-	    imageCaption: '',
-	    imageLink: '',
-	    style: {
-	      backgroundColor: '',
-	      width: '100%'
-	    }
-	  }
-	}];
+	];
 
 /***/ },
 /* 166 */
