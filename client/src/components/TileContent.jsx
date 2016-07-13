@@ -5,8 +5,8 @@ const TileContent = React.createClass({
   render: function () {
 
     if (this.props.content.image) {
-      return <div style={this.props.content.style}>
-              <img src={this.props.content.image}/>
+      return <div >
+              <img src={this.props.content.image} style={this.props.content.style}/>
              </div>;
     } else {
       let markUp = function () {

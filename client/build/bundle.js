@@ -19815,7 +19815,8 @@
 	            imageLink: tile.content.imageLink,
 	            style: {
 	              backgroundColor: tile.content.style.backgroundColor,
-	              width: tile.content.style.width
+	              width: tile.content.style.width,
+	              margin: '0 auto'
 	            }
 	          }
 	        };
@@ -19849,7 +19850,8 @@
 	            imageLink: tile.content.imageLink,
 	            style: {
 	              backgroundColor: tile.content.style.backgroundColor,
-	              width: tile.content.style.width
+	              width: tile.content.style.width,
+	              margin: '0 auto'
 	            }
 	          }
 	        };
@@ -21821,8 +21823,8 @@
 	    if (this.props.content.image) {
 	      return React.createElement(
 	        'div',
-	        { style: this.props.content.style },
-	        React.createElement('img', { src: this.props.content.image })
+	        null,
+	        React.createElement('img', { src: this.props.content.image, style: this.props.content.style })
 	      );
 	    } else {
 	      var markUp = function () {

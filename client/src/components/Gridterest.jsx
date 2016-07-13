@@ -121,7 +121,8 @@ const Gridterest = React.createClass({
                     imageLink: tile.content.imageLink,
                     style: {
                       backgroundColor: tile.content.style.backgroundColor,
-                      width: tile.content.style.width
+                      width: tile.content.style.width,
+                      margin: '0 auto'
                     }
                   }
                 }
@@ -157,7 +158,8 @@ const Gridterest = React.createClass({
                     imageLink: tile.content.imageLink,
                     style: {
                       backgroundColor: tile.content.style.backgroundColor,
-                      width: tile.content.style.width
+                      width: tile.content.style.width,
+                      margin: '0 auto'
                     }
                   }
                 }
