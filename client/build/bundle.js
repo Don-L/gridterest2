@@ -21820,11 +21820,16 @@
 	
 	  render: function render() {
 	
+	    var picDivStyle = this.props.content.style;
+	    picDivStyle.objectFit = 'contain';
+	
+	    var picStyle = { objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' };
+	
 	    if (this.props.content.image) {
 	      return React.createElement(
 	        'div',
-	        { objectFit: 'contain', height: '100%' },
-	        React.createElement('img', { src: this.props.content.image, height: '100%' })
+	        { style: picDivStyle },
+	        React.createElement('img', { src: this.props.content.image, style: picStyle })
 	      );
 	    } else {
 	      var markUp = function () {

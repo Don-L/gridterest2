@@ -4,9 +4,14 @@ const TileContent = React.createClass({
 
   render: function () {
 
+    let picDivStyle = this.props.content.style;
+    picDivStyle.objectFit = 'contain';
+
+    let picStyle = {objectFit: 'contain', maxWidth: '100%', maxHeight: '100%'}
+
     if (this.props.content.image) {
-      return <div objectFit='contain' height='100%'>
-              <img src={this.props.content.image} height='100%'/>
+      return <div style={picDivStyle}>
+              <img src={this.props.content.image} style={picStyle}/>
              </div>;
     } else {
       let markUp = function () {
