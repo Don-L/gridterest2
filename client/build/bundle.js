@@ -21824,7 +21824,7 @@
 	    picDivStyle.objectFit = 'contain';
 	    picDivStyle.display = 'flex'; //new stuff these three lines
 	    picDivStyle.justifyContent = 'center';
-	    picDivStyle.alignItems = 'center';
+	    // picDivStyle.alignItems = 'center';
 	
 	    var picStyle = { objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: '0 auto' };
 	
