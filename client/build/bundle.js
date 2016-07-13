@@ -21966,7 +21966,7 @@
 	      style: {
 	        width: tileWidth,
 	        height: tileHeight,
-	        backgroundColor: '#98c377',
+	        backgroundColor: '#f6faf3',
 	        display: 'inline-block',
 	        margin: tileMargin,
 	        marginBottom: tileMarginBottom,
