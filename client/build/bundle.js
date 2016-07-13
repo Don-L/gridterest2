@@ -19768,7 +19768,8 @@
 	        logDragTarget: this.logDragTarget,
 	        swapPositions: this.swapPositions,
 	        userRequestsChangeTileSize: this.userRequestsChangeTileSize,
-	        changeTileSize: this.changeTileSize
+	        changeTileSize: this.changeTileSize,
+	        userRequestsFill: this.userRequestsFill
 	      })
 	    );
 	  },
@@ -19944,6 +19945,20 @@
 	    this.setState({ tiles: filteredTiles });
 	  },
 	
+	  userRequestsFill: function userRequestsFill(option, position) {
+	    var tile = this.getTileForEdit(position);
+	    var filteredTiles = this.removeTileForEdit(position);
+	    if (option === 'Fill container') {
+	      tile.content.fill = true;
+	      filteredTiles.push(tile);
+	      this.setState({ tiles: filteredTiles });
+	    } else {
+	      tile.content.fill = '';
+	      filteredTiles.push(tile);
+	      this.setState({ tiles: filteredTiles });
+	    }
+	  },
+	
 	  changeTileText: function changeTileText(position, text) {
 	    var allTiles = this.state.tiles;
 	    var editedTile = allTiles.filter(function (tile) {
@@ -20029,7 +20044,8 @@
 	      editingColour: null,
 	      editingText: null,
 	      editingImage: null,
-	      editingTileSize: null });
+	      editingTileSize: null,
+	      imageToFill: null });
 	  },
 	
 	  getTileForEdit: function getTileForEdit(position) {
@@ -20137,7 +20153,7 @@
 	        editingText: this.props.editingText,
 	        editingImage: this.props.editingImage,
 	        editingTileSize: this.props.editingTileSize
-	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _defineProperty(_React$createElement, 'userRequestsChangeTileSize', this.props.userRequestsChangeTileSize), _defineProperty(_React$createElement, 'changeTileSize', this.props.changeTileSize), _React$createElement));
+	      }, _defineProperty(_React$createElement, 'userRequestsEdit', this.props.userRequestsEdit), _defineProperty(_React$createElement, 'onTextSubmit', this.props.onTextSubmit), _defineProperty(_React$createElement, 'changeTileText', this.props.changeTileText), _defineProperty(_React$createElement, 'userRequestsEditColour', this.props.userRequestsEditColour), _defineProperty(_React$createElement, 'changeTileColour', this.props.changeTileColour), _defineProperty(_React$createElement, 'userRequestsAddImage', this.props.userRequestsAddImage), _defineProperty(_React$createElement, 'changeImageURL', this.props.changeImageURL), _defineProperty(_React$createElement, 'tileSelected', this.props.tileSelected), _defineProperty(_React$createElement, 'logDragging', this.props.logDragging), _defineProperty(_React$createElement, 'logDragTarget', this.props.logDragTarget), _defineProperty(_React$createElement, 'swapPositions', this.props.swapPositions), _defineProperty(_React$createElement, 'userRequestsChangeTileSize', this.props.userRequestsChangeTileSize), _defineProperty(_React$createElement, 'changeTileSize', this.props.changeTileSize), _defineProperty(_React$createElement, 'userRequestsFill', this.props.userRequestsFill), _React$createElement));
 	    }.bind(this));
 	
 	    return React.createElement(
@@ -20224,7 +20240,8 @@
 	        userRequestsAddImage: this.props.userRequestsAddImage,
 	        changeImageURL: this.props.changeImageURL,
 	        userRequestsChangeTileSize: this.props.userRequestsChangeTileSize,
-	        changeTileSize: this.props.changeTileSize
+	        changeTileSize: this.props.changeTileSize,
+	        userRequestsFill: this.props.userRequestsFill
 	      })
 	    );
 	  },
@@ -20357,6 +20374,20 @@
 	          }),
 	          React.createElement('input', { type: 'text', placeholder: '(OPTIONAL) LINK URL' }),
 	          React.createElement('input', { type: 'text', placeholder: 'CAPTION' }),
+	          React.createElement(
+	            'select',
+	            { onChange: this.userRequestsFill },
+	            React.createElement(
+	              'option',
+	              null,
+	              'Centre image in container'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Fill container'
+	            )
+	          ),
 	          React.createElement('input', { type: 'submit' })
 	        )
 	      );
@@ -20385,6 +20416,11 @@
 	        )
 	      );
 	    }
+	  },
+	
+	  userRequestsFill: function userRequestsFill(e) {
+	    e.preventDefault();
+	    this.props.userRequestsFill(e.target.value, this.props.position);
 	  },
 	
 	  changeTileText: function changeTileText(e) {
@@ -21827,6 +21863,11 @@
 	    // picDivStyle.alignItems = 'center';
 	
 	    var picStyle = { objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: '0 auto' };
+	
+	    if (this.props.content.fill) {
+	      picDivStyle.objectFit = 'fill';
+	      picStyle = { objectFit: 'fill', margin: '0 auto' };
+	    }
 	
 	    if (this.props.content.image) {
 	      return React.createElement(

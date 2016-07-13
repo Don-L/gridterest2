@@ -73,6 +73,7 @@ const Gridterest = React.createClass({
               swapPositions={this.swapPositions}
               userRequestsChangeTileSize={this.userRequestsChangeTileSize}
               changeTileSize={this.changeTileSize}
+              userRequestsFill={this.userRequestsFill}
         />
       </div>
     );
@@ -253,6 +254,20 @@ const Gridterest = React.createClass({
     this.setState({ tiles: filteredTiles });
   },
 
+  userRequestsFill: function (option, position) {
+    let tile = this.getTileForEdit(position);
+    let filteredTiles = this.removeTileForEdit(position);
+    if (option === 'Fill container') {
+      tile.content.fill = true;
+      filteredTiles.push(tile);
+      this.setState({ tiles: filteredTiles });
+    } else {
+      tile.content.fill = '';
+      filteredTiles.push(tile);
+      this.setState({ tiles: filteredTiles });
+    }
+  },
+
   changeTileText: function (position, text) {
     let allTiles = this.state.tiles;
     let editedTile = allTiles.filter(function (tile) {
@@ -319,7 +334,8 @@ const Gridterest = React.createClass({
                     editingColour: null,
                     editingText: null,
                     editingImage: null,
-                    editingTileSize: null });
+                    editingTileSize: null,
+                    imageToFill: null });
   },
 
   getTileForEdit: function (position) {

@@ -43,6 +43,7 @@ const Grid = React.createClass({
                    swapPositions={this.props.swapPositions}
                    userRequestsChangeTileSize={this.props.userRequestsChangeTileSize}
                    changeTileSize={this.props.changeTileSize}
+                   userRequestsFill={this.props.userRequestsFill}
               />;
           }.bind(this));
 

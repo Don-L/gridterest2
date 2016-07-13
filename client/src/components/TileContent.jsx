@@ -12,6 +12,11 @@ const TileContent = React.createClass({
 
     let picStyle = {objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: '0 auto'}
 
+    if (this.props.content.fill) {
+      picDivStyle.objectFit = 'fill';
+      picStyle = {objectFit: 'fill', margin: '0 auto'}
+    }
+
     if (this.props.content.image) {
       return <div style={picDivStyle}>
               <img src={this.props.content.image} style={picStyle}/>

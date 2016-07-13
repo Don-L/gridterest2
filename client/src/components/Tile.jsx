@@ -55,6 +55,7 @@ const Tile = React.createClass({
                                 changeImageURL={this.props.changeImageURL}
                                 userRequestsChangeTileSize={this.props.userRequestsChangeTileSize}
                                 changeTileSize={this.props.changeTileSize}
+                                userRequestsFill={this.props.userRequestsFill}
                                 />
                   </div>;
 

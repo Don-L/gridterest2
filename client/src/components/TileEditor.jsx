@@ -41,6 +41,10 @@ const TileEditor = React.createClass({
                  </input>
                  <input type='text' placeholder='(OPTIONAL) LINK URL'></input>
                  <input type='text' placeholder='CAPTION'></input>
+                 <select onChange={this.userRequestsFill}>
+                   <option>Centre image in container</option>
+                   <option>Fill container</option>
+                 </select>
                  <input type='submit'></input>
                </form>
              </div>;
@@ -58,6 +62,11 @@ const TileEditor = React.createClass({
                </form>
              </div>
     }
+  },
+
+  userRequestsFill: function (e) {
+    e.preventDefault();
+    this.props.userRequestsFill(e.target.value, this.props.position);
   },
 
   changeTileText: function (e) {
