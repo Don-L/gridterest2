@@ -3,6 +3,7 @@ const Grid = require('./Grid.jsx');
 const Nav = require('./Nav.jsx');
 const Gridfunc = require('./Gridfunc.js');
 const SampleTiles = require('./sample_tiles.js');
+const Prototile = require('./Prototile.js');
 
 const Gridterest = React.createClass({
 
@@ -72,9 +73,16 @@ const Gridterest = React.createClass({
 
   onNavSelect: function (e) {
     if (e.target.value = 'Add more tiles') {
-      console.log(e.target.value);
       this.setUsingNav();
+      this.addTiles(this.state.tiles.length + 1, '250px', '350px', '3px', '-1px');
     } else this.setUsingNav();
+  },
+
+  addTiles: function (tilePosition, tileWidth, tileHeight, tileMargin, tileMarginBottom) {
+    let extraTiles = Prototile.makeLots(tilePosition, tileWidth, tileHeight, tileMargin, tileMarginBottom);
+    let existingTiles = this.state.tiles;
+    let allTiles = existingTiles.concat(extraTiles);
+    this.setState({ tiles: allTiles });
   },
 
   logDragging: function (position) {

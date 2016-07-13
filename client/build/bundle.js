@@ -19698,6 +19698,7 @@
 	var Nav = __webpack_require__(164);
 	var Gridfunc = __webpack_require__(163);
 	var SampleTiles = __webpack_require__(165);
+	var Prototile = __webpack_require__(167);
 	
 	var Gridterest = React.createClass({
 	  displayName: 'Gridterest',
@@ -19767,9 +19768,16 @@
 	
 	  onNavSelect: function onNavSelect(e) {
 	    if (e.target.value = 'Add more tiles') {
-	      console.log(e.target.value);
 	      this.setUsingNav();
+	      this.addTiles(this.state.tiles.length + 1, '250px', '350px', '3px', '-1px');
 	    } else this.setUsingNav();
+	  },
+	
+	  addTiles: function addTiles(tilePosition, tileWidth, tileHeight, tileMargin, tileMarginBottom) {
+	    var extraTiles = Prototile.makeLots(tilePosition, tileWidth, tileHeight, tileMargin, tileMarginBottom);
+	    var existingTiles = this.state.tiles;
+	    var allTiles = existingTiles.concat(extraTiles);
+	    this.setState({ tiles: allTiles });
 	  },
 	
 	  logDragging: function logDragging(position) {
@@ -21713,6 +21721,54 @@
 	});
 	
 	module.exports = TileContent;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = {
+	
+	  create: function create(tilePosition, tileWidth, tileHeight, tileMargin, tileMarginBottom) {
+	    return { position: tilePosition,
+	      style: {
+	        width: tileWidth,
+	        height: tileHeight,
+	        backgroundColor: '#98c377',
+	        display: 'inline-block',
+	        margin: tileMargin,
+	        marginBottom: tileMarginBottom,
+	        borderRadius: '3px',
+	        overflow: 'hidden',
+	        alignContent: 'center',
+	        zIndex: 0
+	      },
+	      content: {
+	        text: '',
+	        textLink: '',
+	        image: '',
+	        imageCaption: '',
+	        imageLink: '',
+	        style: {
+	          backgroundColor: '',
+	          width: '100%'
+	        }
+	      }
+	    };
+	  },
+	
+	  makeLots: function makeLots(startingTilePosition, tileWidth, tileHeight, tileMargin, tileMarginBottom) {
+	    var lots = [];
+	    var i = 0;
+	    while (i < 100) {
+	      var newTile = this.create(startingTilePosition + i, tileWidth, tileHeight, tileMargin, tileMarginBottom);
+	      lots.push(newTile);
+	      i++;
+	    }return lots;
+	  }
+	
+	};
 
 /***/ }
 /******/ ]);
