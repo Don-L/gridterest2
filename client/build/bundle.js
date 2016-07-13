@@ -19796,7 +19796,7 @@
 	        return { position: tile.position,
 	          style: {
 	            width: '100px',
-	            height: '60px',
+	            height: '100px',
 	            backgroundColor: '#98c377',
 	            display: 'inline-block',
 	            margin: '3px',
@@ -19823,7 +19823,7 @@
 	      });
 	      this.setState({ tiles: newTiles,
 	        tileWidth: '100px',
-	        tileHeight: '60px',
+	        tileHeight: '100px',
 	        columns: 12
 	      });
 	    } else {
