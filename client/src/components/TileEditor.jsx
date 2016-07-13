@@ -27,6 +27,19 @@ const TileEditor = React.createClass({
                   <option>Red</option>
                   <option>Green</option>
                   <option>Purple</option>
+                  <option>White</option>
+                  <option>Black</option>
+                  <option>Transparent</option>
+                  <option>Blue</option>
+                  <option>Chartreuse</option>
+                  <option>DarkCyan</option>
+                  <option>DarkGoldenRod</option>
+                  <option>DarkOrange</option>
+                  <option>DarkRed</option>
+                  <option>DeepPink</option>
+                  <option>LightCyan</option>
+                  <option>LightGreen</option>
+                  <option>OrangeRed</option>
                 </select>
                 <input type='submit'/>
               </form>

@@ -20355,6 +20355,71 @@
 	              'option',
 	              null,
 	              'Purple'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'White'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Black'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Transparent'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Blue'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'Chartreuse'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'DarkCyan'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'DarkGoldenRod'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'DarkOrange'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'DarkRed'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'DeepPink'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'LightCyan'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'LightGreen'
+	            ),
+	            React.createElement(
+	              'option',
+	              null,
+	              'OrangeRed'
 	            )
 	          ),
 	          React.createElement('input', { type: 'submit' })
